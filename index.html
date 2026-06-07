@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Maxime Marchandier — Portfolio BUT TC</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ─── RESET & TOKENS ─────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --night:    #0b1120;
+      --navy:     #0f1e35;
+      --navy-mid: #162540;
+      --sand:     #c9b99a;
+      --sand-lt:  #e8ddd0;
+      --copper:   #b87333;
+      --copper-lt:#d4956a;
+      --white:    #f5f0eb;
+      --muted:    #7a8a9a;
+      --font-serif: 'Cormorant Garamond', Georgia, serif;
+      --font-sans:  'Montserrat', sans-serif;
+      --ease-expo: cubic-bezier(0.19, 1, 0.22, 1);
+    }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body { background: var(--night); color: var(--sand-lt); font-family: var(--font-sans); font-weight: 300; line-height: 1.7; overflow-x: hidden; cursor: none; }
+
+    /* ─── BILINGUAL SYSTEM ───────────────────────────────────────── */
+    body.lang-en .fr { display: none !important; }
+    body.lang-fr .en { display: none !important; }
+
+    /* ─── CURSOR & SCROLL ────────────────────────────────────────── */
+    #cursor-dot, #cursor-ring { position: fixed; border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%, -50%); transition: opacity .3s; }
+    #cursor-dot { width: 6px; height: 6px; background: var(--copper); transition: transform .1s var(--ease-expo); }
+    #cursor-ring { width: 32px; height: 32px; border: 1px solid var(--copper); opacity: .5; transition: transform .35s var(--ease-expo), width .25s, height .25s, opacity .3s; }
+    body:has(a:hover) #cursor-ring, body:has(button:hover) #cursor-ring { width: 48px; height: 48px; opacity: .9; }
+    #scroll-progress { position: fixed; top: 0; left: 0; height: 2px; background: linear-gradient(90deg, var(--copper), var(--copper-lt)); z-index: 1000; width: 0%; transition: width .1s linear; }
+
+    /* ─── NAVIGATION ─────────────────────────────────────────────── */
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 900; display: flex; align-items: center; justify-content: space-between; padding: 1.4rem 4rem; transition: background .4s, padding .4s; }
+    nav.scrolled { background: rgba(11,17,32,.95); backdrop-filter: blur(18px); padding: 1rem 4rem; border-bottom: 1px solid rgba(184,115,51,.15); }
+    .nav-logo { font-family: var(--font-serif); font-size: 1.35rem; font-weight: 600; color: var(--white); letter-spacing: .04em; text-decoration: none; }
+    .nav-logo span { color: var(--copper); }
+    .nav-right { display: flex; align-items: center; gap: 3rem; }
+    .nav-links { display: flex; gap: 2.4rem; list-style: none; }
+    .nav-links a { font-size: .72rem; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color .3s; position: relative; }
+    .nav-links a::after { content: ''; position: absolute; bottom: -3px; left: 0; width: 0; height: 1px; background: var(--copper); transition: width .35s var(--ease-expo); }
+    .nav-links a:hover { color: var(--copper-lt); }
+    .nav-links a:hover::after { width: 100%; }
+    
+    .lang-switcher { display: flex; align-items: center; gap: 12px; font-size: .8rem; cursor: none; background: rgba(255,255,255,0.03); padding: 6px 12px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.05); }
+    .lang-btn { background: transparent; border: none; color: var(--muted); cursor: none; transition: color 0.3s; font-weight: 600; display: flex; align-items: center; gap: 4px; }
+    .lang-btn.active { color: var(--white); }
+    .lang-btn:hover { color: var(--copper-lt); }
+
+    /* ─── SECTIONS LAYOUT ────────────────────────────────────────── */
+    section { position: relative; z-index: 1; padding: 6rem 4rem; max-width: 1280px; margin: 0 auto; }
+    .section-label { font-size: .65rem; letter-spacing: .22em; text-transform: uppercase; color: var(--copper); display: flex; align-items: center; gap: .8rem; margin-bottom: 1rem; font-weight: 600; }
+    .section-label::before { content: ''; display: inline-block; width: 28px; height: 1px; background: var(--copper); }
+    h2.section-title { font-family: var(--font-serif); font-size: clamp(2.2rem, 4vw, 3.4rem); font-weight: 300; line-height: 1.15; color: var(--white); margin-bottom: 3.5rem; }
+    h2.section-title em { font-style: italic; color: var(--copper-lt); }
+    .reveal { opacity: 0; transform: translateY(30px); transition: opacity .9s var(--ease-expo), transform .9s var(--ease-expo); }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: .1s; } .reveal-delay-2 { transition-delay: .2s; }
+
+    /* ─── HIGHLIGHT KEYWORDS ─────────────────────────────────────── */
+    .highlight-keyword { color: var(--copper-lt); font-weight: 500; display: inline-block; transition: transform 0.3s var(--ease-expo), color 0.3s; position: relative; }
+    .highlight-keyword::after { content:''; position: absolute; bottom: 0; left: 0; width: 100%; height: 1px; background: rgba(184,115,51,0.3); transition: background 0.3s; }
+    .highlight-keyword:hover { transform: scale(1.03); color: var(--white); }
+    .highlight-keyword:hover::after { background: var(--copper-lt); }
+
+    /* ─── BUTTONS ────────────────────────────────────────────────── */
+    .btn-primary, .btn-secondary { font-family: var(--font-sans); font-size: .72rem; letter-spacing: .14em; text-transform: uppercase; text-decoration: none; padding: .9rem 2.2rem; border-radius: 4px; cursor: none; display: inline-flex; align-items: center; justify-content: center; gap: .6rem; transition: all .35s var(--ease-expo); }
+    .btn-primary { background: var(--copper); color: var(--night); border: 1px solid var(--copper); font-weight: 600; }
+    .btn-primary:hover { background: var(--copper-lt); border-color: var(--copper-lt); transform: translateY(-3px); box-shadow: 0 10px 20px rgba(184,115,51,0.2); }
+    .btn-secondary { background: transparent; color: var(--sand); border: 1px solid rgba(201,185,154,.3); }
+    .btn-secondary:hover { border-color: var(--copper); color: var(--white); transform: translateY(-3px); }
+
+    /* ─── HERO ───────────────────────────────────────────────────── */
+    #hero { min-height: 100vh; display: grid; grid-template-columns: 1fr 400px; align-items: center; gap: 4rem; padding-top: 8rem; }
+    .hero-eyebrow { font-size: .68rem; letter-spacing: .26em; text-transform: uppercase; color: var(--copper); margin-bottom: 1.6rem; display: flex; align-items: center; gap: 1rem; }
+    .hero-eyebrow::before { content: ''; width: 40px; height: 1px; background: var(--copper); }
+    h1 { font-family: var(--font-serif); font-size: clamp(3rem, 6vw, 4.8rem); font-weight: 300; line-height: 1.1; color: var(--white); margin-bottom: 1.8rem; }
+    h1 em { font-style: italic; background: linear-gradient(135deg, var(--copper), var(--copper-lt)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .hero-tagline { font-size: .95rem; color: var(--sand-lt); opacity: 0.9; letter-spacing: .02em; line-height: 1.8; max-width: 540px; margin-bottom: 3rem; }
+    .hero-ctas { display: flex; gap: 1.2rem; flex-wrap: wrap; }
+    .hero-visual { position: relative; z-index: 2; display: flex; align-items: center; justify-content: center; }
+    .profile-frame { position: relative; width: 340px; height: 440px; }
+    .profile-frame::before { content: ''; position: absolute; inset: -12px; border: 1px solid rgba(184,115,51,.25); border-radius: 4px; transition: transform .5s var(--ease-expo); z-index: -1; }
+    .profile-frame:hover::before { transform: translate(6px, 6px); }
+    .profile-img { width: 100%; height: 100%; object-fit: cover; border-radius: 4px; filter: contrast(1.05) grayscale(10%); }
+    .profile-badge { position: absolute; bottom: -24px; left: -24px; background: var(--navy-mid); border: 2px solid var(--copper); padding: 1.3rem 1.8rem; border-radius: 6px; backdrop-filter: blur(12px); z-index: 10; transform: translateZ(25px); box-shadow: 0 20px 45px rgba(0,0,0,0.7), inset 0 1px 0 rgba(255,255,255,0.15); }
+    .badge-stat { font-family: var(--font-serif); font-size: 2.4rem; font-weight: 700; color: var(--copper-lt); line-height: 1; text-shadow: 0 2px 5px rgba(0,0,0,0.5); }
+    .badge-label { font-size: .65rem; letter-spacing: .14em; text-transform: uppercase; color: var(--white); margin-top: .4rem; font-weight: 700; }
+
+    /* ─── QUI JE SUIS & ENCADRE BILAN ───────────────────────────── */
+    .about-container { display: flex; flex-direction: column; gap: 2.5rem; margin-top: 1rem; max-width: 900px; }
+    .about-text p { font-size: 1.05rem; line-height: 1.8; color: var(--sand-lt); margin-bottom: 1.5rem; }
+    .about-text b { color: var(--white); font-weight: 500; }
+    
+    .bilan-encadre { border: 1px solid rgba(201,185,154,0.25); background: rgba(22,37,64,0.3); padding: 3rem; border-radius: 6px; position: relative; }
+    .bilan-encadre::before { content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--copper); border-radius: 6px 0 0 6px; }
+    .bilan-encadre h3 { font-family: var(--font-serif); font-size: 1.8rem; color: var(--copper-lt); margin-bottom: 1.5rem; }
+    .bilan-encadre p { font-size: 0.95rem; line-height: 1.8; color: var(--sand-lt); margin-bottom: 1rem; text-align: justify; }
+    .bilan-encadre b { color: var(--white); font-weight: 500; }
+
+    /* ─── COMPETENCES ANIMÉES ────────────────────────────────────── */
+    .matrix-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; margin-top: 2rem; }
+    .matrix-box { background: rgba(22,37,64,0.2); border: 1px solid rgba(255,255,255,0.03); padding: 2.5rem; border-radius: 6px; transition: transform 0.4s var(--ease-expo), box-shadow 0.4s, border-color 0.4s; }
+    .matrix-box:hover { transform: translateY(-6px); box-shadow: 0 15px 40px rgba(0,0,0,0.3); border-color: rgba(184,115,51,0.3); }
+    .matrix-box h3 { font-family: var(--font-serif); font-size: 1.6rem; color: var(--white); margin-bottom: 1.5rem; }
+    .soft-list { list-style: none; display: flex; flex-direction: column; gap: 1rem; }
+    .soft-list li { font-size: 0.9rem; color: var(--sand-lt); display: flex; align-items: flex-start; gap: 12px; line-height: 1.6; }
+    .soft-list li span { font-size: 1.1rem; }
+    .tag-container { display: flex; flex-wrap: wrap; gap: .6rem; }
+    .tag-skill { font-size: .75rem; background: var(--navy-mid); border: 1px solid rgba(255,255,255,0.05); color: var(--sand-lt); padding: .5rem 1rem; border-radius: 4px; font-weight: 500; transition: border-color 0.3s, color 0.3s; }
+    .tag-skill:hover { border-color: var(--copper-lt); color: var(--white); }
+
+    /* ─── STATS BAR TRANSITION ZONE ──────────────────────────────── */
+    .stats-bar { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; padding: 4rem 0 2rem 0; text-align: center; }
+    .stat-item { background: rgba(255,255,255,0.02); padding: 2rem 1rem; border-radius: 6px; border: 1px solid rgba(255,255,255,0.03); transition: transform 0.4s var(--ease-expo), border-color 0.4s; }
+    .stat-item:hover { transform: translateY(-8px); border-color: rgba(184,115,51,0.2); }
+    .stat-number { font-family: var(--font-serif); font-size: 3rem; color: var(--copper); font-weight: 600; line-height: 1; margin-bottom: .5rem; }
+    .stat-label { font-size: .65rem; letter-spacing: .15em; text-transform: uppercase; color: var(--muted); font-weight: 500; line-height: 1.4; }
+
+    /* ─── CAROUSEL EXPERIENCES PROPORTIONS PARFAITES + 3D TILT ──── */
+    .carousel-section-container { position: relative; width: 100%; margin-top: 2rem; }
+    .exp-viewport { width: 100%; overflow: hidden; position: relative; padding: 1rem 0 3rem 0; }
+    .exp-track { display: flex; transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1); will-change: transform; }
+    .exp-slide { min-width: 100%; width: 100%; padding: 0 10px; }
+    
+    .grand-card { 
+      background: linear-gradient(145deg, rgba(15,30,53,0.8), rgba(22,37,64,0.5));
+      border: 1px solid rgba(201,185,154,0.08); padding: 3rem 4rem; border-radius: 8px;
+      display: grid; grid-template-columns: 3fr 2fr; gap: 4rem; align-items: center;
+      transition: transform 0.1s linear, box-shadow 0.4s; transform-style: preserve-3d; will-change: transform;
+    }
+    .grand-card:hover { box-shadow: 0 25px 60px rgba(0,0,0,0.4); border-color: rgba(184,115,51,0.25); }
+    
+    .grand-card-info { display: flex; flex-direction: column; justify-content: center; transform: translateZ(20px); }
+    .exp-card-logo-container { background: #ffffff; padding: 8px 12px; border-radius: 6px; width: fit-content; height: 50px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.2rem; box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
+    .exp-card-logo { max-height: 35px; max-width: 110px; object-fit: contain; }
+    
+    .exp-card-tag { font-size: .6rem; letter-spacing: .18em; text-transform: uppercase; color: var(--copper); margin-bottom: .4rem; font-weight: 600; }
+    .grand-card-info h3 { font-family: var(--font-serif); font-size: 2.2rem; color: var(--white); margin-bottom: .2rem; }
+    .exp-card-period { font-size: .75rem; color: var(--muted); letter-spacing: .05em; margin-bottom: 1.2rem; }
+    .grand-card-info p { font-size: .92rem; color: var(--sand-lt); opacity: 0.9; line-height: 1.7; margin-bottom: 1.5rem; text-align: justify; }
+    
+    /* BADGES DE COMPÉTENCES (Nouveau, validé BUT) */
+    .tc-badges { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 1.8rem; }
+    .tc-badges span { font-size: 0.6rem; letter-spacing: 0.05em; text-transform: uppercase; background: rgba(184,115,51,0.15); color: var(--copper-lt); padding: 4px 10px; border-radius: 20px; border: 1px solid rgba(184,115,51,0.3); font-weight: 600; }
+
+    /* IMAGE CORRIGÉE (Aspect-ratio & Contain) */
+    .grand-card-media { display: flex; justify-content: center; align-items: center; height: 100%; transform: translateZ(30px); background: rgba(255,255,255,0.02); border-radius: 8px; padding: 1.5rem; border: 1px solid rgba(255,255,255,0.03); }
+    .grand-card-media img { max-width: 100%; height: auto; max-height: 300px; object-fit: contain; filter: drop-shadow(0 15px 30px rgba(0,0,0,0.4)); }
+    
+    .exp-nav-ui { display: flex; justify-content: space-between; align-items: center; margin-top: 1rem; }
+    .exp-dots { display: flex; gap: 12px; }
+    .exp-dot { width: 9px; height: 9px; border-radius: 50%; background: rgba(255,255,255,0.15); border: none; cursor: none; transition: all 0.3s; }
+    .exp-dot.active { background: var(--copper); width: 28px; border-radius: 4px; }
+    .exp-arrow-btn { background: transparent; border: 2px solid rgba(201,185,154,0.3); color: var(--sand); width: 56px; height: 56px; border-radius: 50%; font-size: 1.4rem; display: flex; align-items: center; justify-content: center; cursor: none; transition: all 0.3s; }
+    .exp-arrow-btn:hover { background: var(--copper); color: var(--night); border-color: var(--copper); transform: scale(1.05); }
+
+    .livrable-btn { font-family: var(--font-sans); font-size: .62rem; letter-spacing: .1em; text-transform: uppercase; color: var(--white); background: transparent; border: 1px solid rgba(201,185,154,.25); padding: .6rem 1rem; border-radius: 4px; cursor: none; display: inline-flex; align-items: center; transition: all 0.3s; margin-right: 5px; margin-bottom: 5px; }
+    .livrable-btn:hover { color: var(--night); background: var(--copper); border-color: var(--copper); font-weight: 600; }
+
+    /* ─── TIMELINE DETAILED PURSUIT ──────────────────────────────── */
+    .timeline { position: relative; padding-left: 3rem; max-width: 900px; margin-top: 2rem; }
+    .timeline::before { content: ''; position: absolute; left: 7px; top: 0; bottom: 0; width: 1px; background: linear-gradient(180deg, var(--copper) 0%, rgba(184,115,51,.1) 100%); }
+    .timeline-item { position: relative; padding-bottom: 4rem; }
+    .timeline-item:last-child { padding-bottom: 0; }
+    .timeline-dot { position: absolute; left: -3rem; top: 4px; width: 15px; height: 15px; border-radius: 50%; border: 1px solid var(--copper); background: var(--night); }
+    .timeline-phase { font-size: .6rem; letter-spacing: .2em; text-transform: uppercase; color: var(--copper); margin-bottom: .4rem; font-weight: 600; }
+    .timeline-item h3 { font-family: var(--font-serif); font-size: 1.8rem; color: var(--white); margin-bottom: .4rem; }
+    .timeline-item h3 em { font-style: italic; color: var(--copper-lt); }
+    .timeline-period { font-size: .75rem; color: var(--muted); letter-spacing: .05em; margin-bottom: 1rem; }
+    .timeline-item p { font-size: .88rem; color: var(--sand-lt); opacity: 0.9; max-width: 640px; text-align: justify; }
+
+    /* ─── LIVRABLES DUAL MODE (MARQUEE & GRID) ───────────────────── */
+    #livrables { border-top: 1px solid rgba(201,185,154,.07); overflow: hidden; padding-bottom: 4rem; }
+    .marquee-container { position: relative; width: 100%; overflow: hidden; margin-top: 3rem; padding: 1rem 0; mask-image: linear-gradient(to right, transparent, #000 10%, #000 90%, transparent); -webkit-mask-image: linear-gradient(to right, transparent, #000 10%, #000 90%, transparent); }
+    .marquee-track { display: flex; gap: 2rem; width: max-content; animation: infiniteMarquee 30s linear infinite; }
+    .marquee-track:hover { animation-play-state: paused; }
+    @keyframes infiniteMarquee { 0% { transform: translateX(0); } 100% { transform: translateX(calc(-50% - 1rem)); } }
+    
+    .static-grid-container { display: none; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 3rem; }
+    
+    .marquee-card, .grid-card { position: relative; overflow: hidden; border-radius: 6px; aspect-ratio: 4/3; cursor: none; border: 1px solid rgba(255,255,255,0.04); }
+    .marquee-card { width: 300px; }
+    .grid-card { width: 100%; }
+    
+    .archive-img { width: 100%; height: 100%; object-fit: cover; display: block; filter: brightness(.7); transition: transform .6s var(--ease-expo), filter .4s; }
+    .marquee-card:hover .archive-img, .grid-card:hover .archive-img { transform: scale(1.04); filter: brightness(.9); }
+    .archive-overlay { position: absolute; inset: 0; background: linear-gradient(0deg, rgba(11,17,32,.95) 0%, transparent 60%); display: flex; flex-direction: column; justify-content: flex-end; padding: 1.5rem; opacity: 0; transition: opacity .35s; }
+    .marquee-card:hover .archive-overlay, .grid-card:hover .archive-overlay { opacity: 1; }
+    .archive-title { font-family: var(--font-serif); font-size: 1.2rem; color: var(--white); margin-bottom: .2rem; }
+    .archive-sub { font-size: .65rem; letter-spacing: .12em; text-transform: uppercase; color: var(--copper); }
+
+    .toggle-view-container { display: flex; justify-content: center; margin-top: 2rem; }
+
+    /* ─── CONTACT SECTION & FOOTER (CTA ENGAGEANT) ──────────────── */
+    #contact { border-top: 1px solid rgba(201,185,154,.08); padding: 6rem 4rem 4rem 4rem; max-width: 1280px; margin: 0 auto; }
+    .contact-card { background: rgba(22,37,64,0.4); border: 1px solid rgba(201,185,154,0.1); border-radius: 8px; padding: 4rem; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+    .contact-info h2 { font-family: var(--font-serif); font-size: 2.8rem; color: var(--white); margin-bottom: 1rem; }
+    .contact-info h2 span { color: var(--copper); font-style: italic; }
+    .contact-info p { color: var(--sand-lt); font-size: 0.95rem; margin-bottom: 2rem; max-width: 400px; }
+    .contact-links { display: flex; flex-direction: column; gap: 1.2rem; }
+    .contact-item { display: flex; align-items: center; gap: 1rem; color: var(--white); font-size: 1rem; text-decoration: none; transition: color 0.3s, transform 0.3s; width: fit-content; }
+    .contact-item svg { color: var(--copper); width: 22px; height: 22px; }
+    .contact-item:hover { color: var(--copper-lt); transform: translateX(5px); }
+    .contact-actions { display: flex; flex-direction: column; align-items: center; gap: 2rem; text-align: center; border-left: 1px solid rgba(255,255,255,0.05); padding-left: 4rem; }
+    .qr-box img { width: 140px; height: 140px; border-radius: 6px; padding: 10px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); margin-bottom: 0.5rem; }
+    .qr-box span { display: block; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); }
+    .copyright { font-size: .68rem; color: rgba(122,138,154,.4); padding-top: 3rem; margin-top: 3rem; border-top: 1px solid rgba(201,185,154,.06); display: flex; justify-content: space-between; letter-spacing: 0.05em; }
+
+    /* ─── LIGHTBOX MODAL ─────────────────────────────────────────── */
+    #modal-overlay { position: fixed; inset: 0; z-index: 2000; background: rgba(8,13,26,.94); backdrop-filter: blur(12px); display: none; align-items: center; justify-content: center; padding: 2rem; }
+    #modal-overlay.active { display: flex; }
+    #modal-box { position: relative; max-width: 900px; width: 100%; max-height: 85vh; background: var(--navy-mid); border: 1px solid rgba(201,185,154,.12); border-radius: 6px; overflow: hidden; }
+    #modal-img { width: 100%; display: block; max-height: 75vh; object-fit: contain; background: var(--night); }
+    #modal-caption { padding: 1.2rem; font-size: .8rem; color: var(--sand-lt); background: var(--navy); font-weight: 500; }
+    #modal-close { position: absolute; top: 1rem; right: 1rem; background: rgba(11,17,32,.8); color: var(--white); width: 38px; height: 38px; border-radius: 50%; border: none; cursor: none; font-size: 1rem; display: flex; align-items: center; justify-content: center; transition: background 0.3s; }
+    #modal-close:hover { background: var(--copper); color: var(--night); }
+
+    /* ─── RESPONSIVE MOBILE & TABLET ─────────────────────────────── */
+    @media (max-width: 960px) {
+      #hero { grid-template-columns: 1fr; text-align: center; padding-top: 6rem; }
+      .hero-eyebrow, .hero-ctas { justify-content: center; }
+      .hero-visual { margin-top: 3rem; }
+      .profile-frame { width: 280px; height: 360px; }
+      .matrix-grid, .stats-bar { grid-template-columns: 1fr; gap: 1.5rem; }
+      .grand-card { grid-template-columns: 1fr; padding: 2rem; gap: 2rem; }
+      .grand-card-media { height: auto; padding: 1rem; }
+      .grand-card-media img { max-height: 200px; }
+      nav { padding: 1rem 1.5rem; } .nav-links { display: none; }
+      .contact-card { grid-template-columns: 1fr; padding: 2rem; text-align: center; }
+      .contact-links { align-items: center; }
+      .contact-actions { border-left: none; padding-left: 0; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 2rem; }
+    }
+  </style>
+</head>
+<body class="lang-fr">
+
+  <div id="cursor-dot"></div><div id="cursor-ring"></div><div id="scroll-progress"></div>
+
+  <nav id="main-nav">
+    <a href="#hero" class="nav-logo">MM<span>.</span></a>
+    <div class="nav-right">
+      <ul class="nav-links">
+        <li><a href="#about" class="fr">Profil</a><a href="#about" class="en">Profile</a></li>
+        <li><a href="#competences" class="fr">Compétences</a><a href="#competences" class="en">Skills</a></li>
+        <li><a href="#expertises" class="fr">Expériences</a><a href="#expertises" class="en">Experience</a></li>
+        <li><a href="#avenir" class="fr">Poursuite</a><a href="#avenir" class="en">Future</a></li>
+        <li><a href="#livrables" class="fr">Archives</a><a href="#livrables" class="en">Archives</a></li>
+        <li><a href="#contact" class="fr">Contact</a><a href="#contact" class="en">Contact</a></li>
+      </ul>
+      <div class="lang-switcher">
+        <button class="lang-btn active" onclick="setLang('fr')">FR 🇫🇷</button>
+        <span style="color:var(--muted)">|</span>
+        <button class="lang-btn" onclick="setLang('en')">EN 🇬🇧</button>
+      </div>
+    </div>
+  </nav>
+
+  <section id="hero">
+    <div class="hero-content">
+      <div class="hero-eyebrow reveal"><span class="fr">Portfolio</span><span class="en">Portfolio</span></div>
+      <h1 class="reveal reveal-delay-1">
+        Maxime<br><em>Marchandier</em>
+      </h1>
+      <p class="hero-tagline reveal reveal-delay-2">
+        <span class="fr">Actuellement en 3ème année de BUT Techniques de Commercialisation à Bordeaux. Je conçois des stratégies de croissance performantes et des parcours clients fluides.</span>
+        <span class="en">Currently in my 3rd year of a Bachelor in Marketing & Business in Bordeaux. I design high-performance growth strategies and seamless customer journeys.</span>
+      </p>
+      <div class="hero-ctas reveal reveal-delay-3">
+        <a href="#expertises" class="btn-primary">
+          <span class="fr">Découvrir mes projets</span><span class="en">Discover my projects</span>
+        </a>
+        <a href="assets/cv.pdf" target="_blank" class="btn-secondary">
+          <span class="fr">Télécharger mon CV</span><span class="en">Download my Resume</span>
+        </a>
+      </div>
+    </div>
+    <div class="hero-visual reveal reveal-delay-2">
+      <div class="profile-frame">
+        <img src="assets/profil.jpg" alt="Maxime Marchandier" class="profile-img" />
+        <div class="profile-badge">
+          <div class="badge-stat">+3</div>
+          <div class="badge-label"><span class="fr">Projets gérés</span><span class="en">Projects managed</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" style="padding-top: 2rem; padding-bottom: 2rem;">
+    <div class="section-label reveal"><span class="fr">Bilan & Profil</span><span class="en">Profile & Overview</span></div>
+    <h2 class="section-title reveal reveal-delay-1">
+      <span class="fr">Qui je <span style="color: var(--copper);">suis</span></span>
+      <span class="en">Who I <span style="color: var(--copper);">am</span></span>
+    </h2>
+    
+    <div class="about-container reveal reveal-delay-2">
+      <div class="about-text">
+        <p class="fr">Avant mon entrée à Tech de Co, mon profil s'est d'abord forgé sur le terrain. <b>Plus de 10 ans de basket en compétition</b> m'ont inculqué l'esprit d'équipe, la communication, et le <b>dépassement de soi</b>. Je pratique également le golf avec mon père, une véritable école de persévérance et de précision.</p>
+        <p class="en">Before joining Tech de Co, my character was forged on the court. <b>Over 10 years of competitive basketball</b> taught me team spirit, communication, and <b>self-improvement</b>. I also play golf, a true school of perseverance and precision.</p>
+
+        <p class="fr">Passionné par l'univers du prêt-à-porter, du sport et de la parfumerie confidentielle, je suis de nature curieuse et <b>orienté vers l'action</b>. De la création de ma marque de vêtements <em>Saphir</em> à mes missions actuelles en entreprise, j'ai toujours eu à cœur de prendre des initiatives. Enfin, j'accorde une grande importance à ma vie sociale pour maintenir un <b>équilibre sain</b> avec la vie professionnelle.</p>
+        <p class="en">Passionate about fashion, sports, and niche perfumery, I am naturally curious and <b>action-oriented</b>. From creating my clothing brand <em>Saphir</em> to my corporate missions, I love taking initiatives. Finally, I maintain an active social life to ensure a <b>healthy balance</b> with my professional ambitions.</p>
+      </div>
+
+      <div class="bilan-encadre reveal">
+        <h3 class="fr">Bilan BUT TC — 3 ans</h3>
+        <h3 class="en">3-Year Degree Overview</h3>
+        <p class="fr">Loin d'un simple apprentissage théorique, ces trois années ont été un véritable <b>tremplin professionnel</b>. J'y ai découvert une appétence forte pour le digital. Mes stages successifs et mon alternance m'ont permis de passer de l'idée à l'action : <b>pilotage de campagnes, gestion e-commerce en autonomie, et structuration de projets</b>. La formation pluridisciplinaire de Tech de Co m'a ouvert les yeux sur des outils et des pratiques que j'utilise aujourd'hui au quotidien.<br><br>L'ouverture internationale, amorcée par mon stage à <b>Valencia</b> (Espagne), a définitivement orienté mes objectifs. Je sais aujourd'hui ce que je veux construire et ma stratégie se déploie en deux temps : une <b>expatriation académique à Madrid (2026-2027)</b> pour me tester sur le terrain et perfectionner mes compétences linguistiques, suivie de l'<b>intégration d'un Master d'excellence dès mon retour en 2028</b>.</p>
+        <p class="en">Far from simple theory, these three years were a true professional springboard. Successive internships and my apprenticeship allowed me to move from ideas to action. International exposure in <b>Valencia</b> shaped my goals. My objective is to reach a strategic milestone by spending an academic language immersion year in <b>Madrid (2026-2027)</b>, followed by an elite <b>Master's degree program starting in 2028</b>.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="competences" style="padding-top: 2rem; padding-bottom: 2rem;">
+    <div class="section-label reveal"><span class="fr">Compétences Éprouvées</span><span class="en">Skills & Abilities</span></div>
+    <h2 class="section-title reveal reveal-delay-1">
+      <span class="fr">Ce que je <em>sais faire</em></span>
+      <span class="en">What I <em>can achieve</em></span>
+    </h2>
+    
+    <div class="matrix-grid">
+      <div class="matrix-box reveal">
+        <h3 class="fr">Soft Skills & Savoir-être</h3><h3 class="en">Soft Skills</h3>
+        <ul class="soft-list">
+          <li><span>🤝</span> <div class="fr"><b>Qualités relationnelles :</b> Création de liens de confiance et communication fluide.</div><div class="en"><b>Interpersonal skills:</b> Building trust and fluid communication.</div></li>
+          <li><span>💡</span> <div class="fr"><b>Adaptabilité :</b> Intégration rapide dans des environnements variés et défis.</div><div class="en"><b>Adaptability:</b> Quick integration into varied environments and challenges.</div></li>
+          <li><span>🚀</span> <div class="fr"><b>Force de proposition :</b> Apport d'idées innovantes et de solutions concrètes.</div><div class="en"><b>Proactive mindset:</b> Bringing innovative ideas and concrete solutions.</div></li>
+          <li><span>⏱️</span> <div class="fr"><b>Rigueur & Organisation :</b> Gestion efficace des priorités et respect des délais stricts.</div><div class="en"><b>Rigor & Organization:</b> Efficient priority management and strict deadlines.</div></li>
+          <li><span>🎯</span> <div class="fr"><b>Esprit d'équipe :</b> Collaboration constructive et contribution à la dynamique collective.</div><div class="en"><b>Team player:</b> Constructive collaboration and group dynamics.</div></li>
+        </ul>
+      </div>
+
+      <div class="matrix-box reveal reveal-delay-1">
+        <h3 class="fr">Langues & Vision Commerciale</h3><h3 class="en">Languages & Commerce</h3>
+        <ul class="soft-list" style="margin-bottom: 2rem;">
+          <li><span>🇬🇧</span> <div class="fr"><b>Anglais :</b> TOEIC 810 (Niveau opérationnel validé)</div><div class="en"><b>English:</b> TOEIC 810 (Validated working proficiency)</div></li>
+          <li><span>🇪🇸</span> <div class="fr"><b>Espagnol :</b> Niveau B2 certifié (Prêt pour l'expatriation à Madrid)</div><div class="en"><b>Spanish:</b> B2 Certified (Ready for Madrid university exchange)</div></li>
+        </ul>
+        <h3 class="fr">Hard Skills • Apport Tech de Co</h3><h3 class="en">Hard Skills & Frameworks</h3>
+        <div class="tag-container">
+          <span class="tag-skill">Shopify / WordPress</span><span class="tag-skill">Google Analytics</span>
+          <span class="tag-skill">Claude / ChatGPT / Perplexity</span><span class="tag-skill">Base44 Vibe Coding</span>
+          <span class="tag-skill">Canva / Midjourney</span><span class="tag-skill">SEO Sémantique</span>
+          <span class="tag-skill">Négociation B2B</span><span class="tag-skill">Stratégie Omnicanale</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="stats-bar reveal" style="margin-top: 4rem;">
+      <div class="stat-item">
+        <div class="stat-number">+600</div>
+        <div class="stat-label"><span class="fr">Produits créés au catalogue<br>(Migration Parfumerie)</span><span class="en">Products created<br>(Shopify Migration)</span></div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">102</div>
+        <div class="stat-label"><span class="fr">Leads organiques générés<br>(En moins d'un mois à la Parfumerie)</span><span class="en">Organic leads generated<br>(Under one month)</span></div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">12K€</div>
+        <div class="stat-label"><span class="fr">CA réalisé en vente physique<br>(En 3 semaines chez Courir)</span><span class="en">Retail sales generated<br>(In 3 weeks at Courir)</span></div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">810</div>
+        <div class="stat-label"><span class="fr">Score TOEIC Obtenu</span><span class="en">TOEIC Score Obtained</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="expertises" style="padding-top:2rem;">
+    <div class="section-label reveal"><span class="fr">Dossier Professionnel</span><span class="en">Professional Path</span></div>
+    <h2 class="section-title reveal reveal-delay-1">
+      <span class="fr">Ce que j'ai <em>construit</em></span>
+      <span class="en">What I have <em>built</em></span>
+    </h2>
+
+    <div class="carousel-section-container reveal">
+      <div class="exp-viewport">
+        <div class="exp-track" id="expTrack">
+          
+          <div class="exp-slide">
+            <div class="grand-card">
+              <div class="grand-card-info">
+                <div class="exp-card-logo-container"><img src="assets/logo-parfumerie.png" alt="La Parfumerie Bordelaise" class="exp-card-logo" /></div>
+                <div class="exp-card-tag"><span class="fr">Alternance • E-Commerce Stratégique</span><span class="en">Apprenticeship • Strategic E-Commerce</span></div>
+                <h3>La Parfumerie Bordelaise</h3>
+                <div class="exp-card-period">2025 – 2026 • Bordeaux</div>
+                <p class="fr">Migration intégrale du site web vers <span class="highlight-keyword">Shopify</span> et structuration du catalogue (<span class="highlight-keyword">+600 références</span>). Rédaction de fiches produits optimisées et déploiement d'une stratégie <span class="highlight-keyword">SEO</span> pour capter du trafic qualifié. Création d'un <span class="highlight-keyword">Diagnostic Olfactif interactif</span>. Conseil expert en parfumerie de niche, accompagnement d'une clientèle exigeante et fidélisation en boutique.</p>
+                <div class="tc-badges">
+                  <span>E-Commerce</span><span>SEO Sémantique</span><span>Brand Content</span>
+                </div>
+                <div class="exp-card-actions">
+                  <button class="livrable-btn" onclick="openModal('assets/shopify-accueil.jpg', 'Shopify Vitrine')">Shopify Vitrine</button>
+                  <button class="livrable-btn" onclick="openModal('assets/fiche-produit-boutique.jpg', 'Fiche Boutique')">Fiche Boutique</button>
+                  <button class="livrable-btn" onclick="openModal('assets/diagnostic-interface.jpg', 'Diagnostic UX')">Diagnostic UX</button>
+                </div>
+              </div>
+              <div class="grand-card-media"><img src="assets/lpb-interieur.jpg" alt="La Parfumerie Interieur" /></div>
+            </div>
+          </div>
+
+          <div class="exp-slide">
+            <div class="grand-card">
+              <div class="grand-card-info">
+                <div class="exp-card-logo-container"><img src="assets/saphir-logo.jpg" alt="Saphir" class="exp-card-logo" /></div>
+                <div class="exp-card-tag"><span class="fr">Entrepreneuriat • Direction de Marque</span><span class="en">Entrepreneurship • Brand Management</span></div>
+                <h3>Saphir — Prêt-à-porter</h3>
+                <div class="exp-card-period"><span class="fr">Projet Co-fondateur • Mode</span><span class="en">Co-founder Project • Fashion</span></div>
+                <p class="fr">Pendant mon année de terminale, passionné de mode, j'ai eu l'opportunité avec un ami de cofonder <b>Saphir</b>, une marque de prêt-à-porter. Cette expérience m'a permis de développer des compétences clés en matière de rédaction de <span class="highlight-keyword">cahiers des charges</span>, de démarchage de fournisseurs, de <span class="highlight-keyword">négociation de prix</span> et de gestion des délais. J'ai également appris à être créatif, à résoudre des problèmes rapidement et à prendre des décisions importantes. Première capsule lancée en <span class="highlight-keyword">rupture de stock complète</span>.</p>
+                <div class="tc-badges">
+                  <span>Entrepreneuriat</span><span>Négociation B2B</span><span>Gestion de Projet</span>
+                </div>
+                <div class="exp-card-actions">
+                  <button class="livrable-btn" onclick="openModal('assets/saphir-produit.jpg', 'Saphir — Catalogue produit')">Shooting Produit</button>
+                </div>
+              </div>
+              <div class="grand-card-media"><img src="assets/saphir-produit.jpg" alt="Saphir Produit Studio" /></div>
+            </div>
+          </div>
+
+          <div class="exp-slide">
+            <div class="grand-card">
+              <div class="grand-card-info">
+                <div class="exp-card-logo-container" style="background:#ffffff; padding:8px; border-radius:4px;"><img src="assets/courir-logo.jpg" alt="Courir" class="exp-card-logo" /></div>
+                <div class="exp-card-tag" style="color:var(--copper-lt);"><span class="fr">Stage • Vente Omnicanale</span><span class="en">Internship • Omnichannel Retail Sales</span></div>
+                <h3>Courir</h3>
+                <div class="exp-card-period">2024 • Performance Commerciale</div>
+                <p class="fr">Gestion de fortes affluences en période de soldes et application de techniques d'argumentation commerciale directe en face-à-face. Traitement des objections et encaissement fluide. Performance individuelle marquante de <span class="highlight-keyword">12 000 € de CA</span> réalisé sur une seule période de rush de <span class="highlight-keyword">3 semaines</span>.</p>
+                <div class="tc-badges">
+                  <span>Vente B2C</span><span>Performance Commerciale</span><span>Relation Client</span>
+                </div>
+              </div>
+              <div class="grand-card-media"><img src="assets/courir-boutique.jpg" alt="Courir Boutique Devanture" /></div>
+            </div>
+          </div>
+
+          <div class="exp-slide">
+            <div class="grand-card">
+              <div class="grand-card-info">
+                <div class="exp-card-logo-container"><img src="assets/mo-bike-logo.jpg" alt="Mo Bike Valencia" class="exp-card-logo" /></div>
+                <div class="exp-card-tag"><span class="fr">Stage • Acquisition Organique & Sociale</span><span class="en">Internship • SEO & Social Growth</span></div>
+                <h3>CDLZ Marketing & Mo'Bike</h3>
+                <div class="exp-card-period">2025 • <span class="fr">Bordeaux & Espagne</span><span class="en">Bordeaux & Spain</span></div>
+                <p class="fr"><b>CDLZ Marketing :</b> Stage de 2 mois. Rédaction et optimisation de <span class="highlight-keyword">+70 articles de blog</span> stratégiques. Travail approfondi sur la sémantique et le maillage interne pour positionner les clients en première page Google. Analyse de Performance via Google Search Console.<br><br><b>Mo'Bike (Valence) :</b> Accueil, conseil et vente en <span class="highlight-keyword">Anglais et Espagnol</span> en contexte touristique intense. Animation du compte Instagram (Community Management) et création de contenus visuels.</p>
+                <div class="tc-badges">
+                  <span>SEO Stratégique</span><span>Community Management</span><span>International</span>
+                </div>
+                <div class="exp-card-actions">
+                  <button class="livrable-btn" onclick="openModal('assets/valence-instagram.png', 'Instagram Mo\'Bike Valencia')">Instagram Social</button>
+                </div>
+              </div>
+              <div class="grand-card-media"><img src="assets/valence-instagram.png" alt="Valence Acquisition" /></div>
+            </div>
+          </div>
+
+          <div class="exp-slide">
+            <div class="grand-card">
+              <div class="grand-card-info">
+                <div class="exp-card-logo-container"><img src="assets/tc-talent-logo.jpg" alt="TC Talent" class="exp-card-logo" /></div>
+                <div class="exp-card-tag" style="color:var(--sand);"><span class="fr">Gestion de Projet • Événementiel</span><span class="en">Project Management • Corporate Event</span></div>
+                <h3>TC Talent — Événementiel</h3>
+                <div class="exp-card-period">IUT de Bordeaux • Co-Chef de Projet</div>
+                <p class="fr">Direction d'un projet événementiel d'envergure (Atelier Couture) avec une contrainte stricte de <span class="highlight-keyword">0€ de budget</span> initial. Négociation complexe de partenariats logistiques (prêt de matériel par une école technique, accords d'assurances) et management d'équipe. Déploiement d'une communication omnicanale virale validant <span class="highlight-keyword">100% de remplissage</span>.</p>
+                <div class="tc-badges">
+                  <span>Gestion de Projet</span><span>Partenariats</span><span>Communication B2C</span>
+                </div>
+                <div class="exp-card-actions">
+                  <button class="livrable-btn" onclick="openModal('assets/tc-talent-action.jpg', 'TC Talent — Événement Live')">Événement Live</button>
+                </div>
+              </div>
+              <div class="grand-card-media"><img src="assets/tc-talent-action.jpg" alt="TC Talent Design Artwork" /></div>
+            </div>
+          </div>
+
+          <div class="exp-slide">
+            <div class="grand-card">
+              <div class="grand-card-info">
+                <div class="exp-card-logo-container"><img src="assets/sudouest-logo.jpg" alt="Sud Ouest" class="exp-card-logo" /></div>
+                <div class="exp-card-tag" style="color:#ef4444;"><span class="fr">Stage • Développement Commercial Terrain</span><span class="en">Internship • Field Sales Development</span></div>
+                <h3>Sud Ouest</h3>
+                <div class="exp-card-period">2023 • Animation & Prospection</div>
+                <p class="fr">Animation de stand et prospection active lors de la Foire Internationale de Bordeaux. Présentation des offres et argumentation commerciale structurée pour transformer les prospects en abonnés longue durée. <b>Performance :</b> Atteinte rigoureuse des objectifs de vente quotidiens et remontée d'informations terrain pour optimiser les outils d'aide à la vente (PVA).</p>
+                <div class="tc-badges">
+                  <span>Prospection</span><span>Vente Directe</span><span>Fidélisation</span>
+                </div>
+              </div>
+              <div class="grand-card-media"><img src="assets/equipesudouest.jpg" alt="Sud Ouest Action Frame" /></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="exp-nav-ui">
+        <button class="exp-arrow-btn" onclick="shiftExp(-1)">❮</button>
+        <div class="exp-dots" id="expDotsContainer"></div>
+        <button class="exp-arrow-btn" onclick="shiftExp(1)">❯</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="avenir">
+    <div class="section-label reveal"><span class="fr">Vision & Ambition</span><span class="en">Strategic Vision</span></div>
+    <h2 class="section-title reveal reveal-delay-1">
+      <span class="fr">Poursuite d'études / <em>À venir</em></span><span class="en">Educational <em>Path</em></span>
+    </h2>
+
+    <div class="timeline">
+      <div class="timeline-item reveal">
+        <div class="timeline-dot"></div>
+        <div class="timeline-phase"><span class="fr">Horizon Court — 2026 / 2027</span><span class="en">Short Term — 2026 / 2027</span></div>
+        <h3><span class="fr">Expatriation Universitaire Globale</span><span class="en">Global University Expatriation</span><br><em>Madrid · CUNEF Universidad</em></h3>
+        <p class="fr">Départ d'un an validé pour suivre un cursus d'excellence bilingue à Madrid (CUNEF). Immersion culturelle et linguistique totale permettant de perfectionner mon niveau de langue en situation réelle avant de postuler en Master.</p>
+        <p class="en">A one-year departure approved to follow an excellent bilingual curriculum in Madrid (CUNEF). Total cultural and linguistic immersion to adapt my e-commerce skills to European markets.</p>
+      </div>
+      <div class="timeline-item reveal">
+        <div class="timeline-dot"></div>
+        <div class="timeline-phase"><span class="fr">Horizon Moyen — 2027 / 2028</span><span class="en">Medium Term — 2027 / 2028</span></div>
+        <h3>Master Spécialisé Hybride<br><em><span class="fr">Stratégie Digitale Internationale & E-Commerce</span><span class="en">International Digital Strategy & E-Commerce</span></em></h3>
+        <p class="fr">Intégration d'une formation supérieure (Montpellier, IAE Bordeaux/Nice, Bayonne) visant à lier l'expansion commerciale et les courants digitaux. En format d'alternance, cette spécialisation me permettra d'approfondir selon les opportunités soit la <i>Data Analytics</i> (CRO, leviers d'acquisition complexes), soit la dimension <i>Internationale</i> du management stratégique.</p>
+        <p class="en">High-level specialization to combine international expansion strategies and digital trends. Deepening complex acquisition levers, advanced data analytics, and Conversion Rate Optimization (CRO).</p>
+      </div>
+      <div class="timeline-item reveal">
+        <div class="timeline-dot"></div>
+        <div class="timeline-phase"><span class="fr">Horizon Long — 2028+</span><span class="en">Long Term — 2028+</span></div>
+        <h3>Manager Stratégique<br><em><span class="fr">Omnicanal & International Commerce</span><span class="en">Omnichannel & International Commerce</span></em></h3>
+        <p class="fr">Prendre la direction de projets e-commerce globaux et internationaux, idéalement dans l'univers du prêt-à-porter, de la parfumerie confidentielle ou des maisons de luxe. Lier vision créative et performance numérique à l'échelle mondiale.</p>
+        <p class="en">Taking the lead of global e-commerce projects, ideally in high-end fashion, niche perfumery, or luxury houses. Combining creative vision and digital performance on a global scale.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="livrables">
+    <div class="section-label reveal"><span class="fr">Salle des Archives</span><span class="en">Archive Room</span></div>
+    <h2 class="section-title reveal reveal-delay-1">
+      <span class="fr">Dossier des <em>Livrables</em></span><span class="en">Project <em>Deliverables</em></span>
+    </h2>
+
+    <div id="livrables-marquee" class="marquee-container reveal">
+      <div class="marquee-track">
+        <div class="marquee-card" onclick="openModal('assets/shopify-accueil.jpg', 'Shopify Vitrine')"><img class="archive-img" src="assets/shopify-accueil.jpg" /><div class="archive-overlay"><div class="archive-title">Shopify Vitrine</div><div class="archive-sub">E-Commerce</div></div></div>
+        <div class="marquee-card" onclick="openModal('assets/diagnostic-interface.jpg', 'Diagnostic UX')"><img class="archive-img" src="assets/diagnostic-interface.jpg" /><div class="archive-overlay"><div class="archive-title">Diagnostic UX</div><div class="archive-sub">Marketing Digital</div></div></div>
+        <div class="marquee-card" onclick="openModal('assets/fiche-produit-boutique.jpg', 'Fiche Produit Client')"><img class="archive-img" src="assets/fiche-produit-boutique.jpg" /><div class="archive-overlay"><div class="archive-title">Fiche Produit</div><div class="archive-sub">SEO / Intégration</div></div></div>
+        <div class="marquee-card" onclick="openModal('assets/madrid-ola-signe.png', 'OLA CUNEF Madrid')"><img class="archive-img" src="assets/madrid-ola-signe.png" /><div class="archive-overlay"><div class="archive-title">OLA CUNEF</div><div class="archive-sub">International</div></div></div>
+        <div class="marquee-card" onclick="openModal('assets/tc-talent-action.jpg', 'TC Talent Event')"><img class="archive-img" src="assets/tc-talent-action.jpg" /><div class="archive-overlay"><div class="archive-title">TC Talent Live</div><div class="archive-sub">Gestion de Projet</div></div></div>
+        <div class="marquee-card" onclick="openModal('assets/saphir-produit.jpg', 'Shooting Saphir')"><img class="archive-img" src="assets/saphir-produit.jpg" /><div class="archive-overlay"><div class="archive-title">Saphir Fashion</div><div class="archive-sub">Entrepreneuriat</div></div></div>
+        <div class="marquee-card" onclick="openModal('assets/shopify-accueil.jpg', 'Shopify Vitrine')"><img class="archive-img" src="assets/shopify-accueil.jpg" /><div class="archive-overlay"><div class="archive-title">Shopify Vitrine</div><div class="archive-sub">E-Commerce</div></div></div>
+        <div class="marquee-card" onclick="openModal('assets/diagnostic-interface.jpg', 'Diagnostic UX')"><img class="archive-img" src="assets/diagnostic-interface.jpg" /><div class="archive-overlay"><div class="archive-title">Diagnostic UX</div><div class="archive-sub">Marketing Digital</div></div></div>
+        <div class="marquee-card" onclick="openModal('assets/fiche-produit-boutique.jpg', 'Fiche Produit Client')"><img class="archive-img" src="assets/fiche-produit-boutique.jpg" /><div class="archive-overlay"><div class="archive-title">Fiche Produit</div><div class="archive-sub">SEO / Intégration</div></div></div>
+        <div class="marquee-card" onclick="openModal('assets/madrid-ola-signe.png', 'OLA CUNEF Madrid')"><img class="archive-img" src="assets/madrid-ola-signe.png" /><div class="archive-overlay"><div class="archive-title">OLA CUNEF</div><div class="archive-sub">International</div></div></div>
+        <div class="marquee-card" onclick="openModal('assets/tc-talent-action.jpg', 'TC Talent Event')"><img class="archive-img" src="assets/tc-talent-action.jpg" /><div class="archive-overlay"><div class="archive-title">TC Talent Live</div><div class="archive-sub">Gestion de Projet</div></div></div>
+        <div class="marquee-card" onclick="openModal('assets/saphir-produit.jpg', 'Shooting Saphir')"><img class="archive-img" src="assets/saphir-produit.jpg" /><div class="archive-overlay"><div class="archive-title">Saphir Fashion</div><div class="archive-sub">Entrepreneuriat</div></div></div>
+      </div>
+    </div>
+
+    <div id="livrables-grid" class="static-grid-container">
+      <div class="grid-card" onclick="openModal('assets/shopify-accueil.jpg', 'Shopify Vitrine')"><img class="archive-img" src="assets/shopify-accueil.jpg" /><div class="archive-overlay"><div class="archive-title">Shopify Vitrine</div><div class="archive-sub">E-Commerce</div></div></div>
+      <div class="grid-card" onclick="openModal('assets/diagnostic-interface.jpg', 'Diagnostic UX')"><img class="archive-img" src="assets/diagnostic-interface.jpg" /><div class="archive-overlay"><div class="archive-title">Diagnostic UX</div><div class="archive-sub">Marketing Digital</div></div></div>
+      <div class="grid-card" onclick="openModal('assets/fiche-produit-boutique.jpg', 'Fiche Produit Client')"><img class="archive-img" src="assets/fiche-produit-boutique.jpg" /><div class="archive-overlay"><div class="archive-title">Fiche Produit</div><div class="archive-sub">SEO / Intégration</div></div></div>
+      <div class="grid-card" onclick="openModal('assets/madrid-ola-signe.png', 'OLA CUNEF Madrid')"><img class="archive-img" src="assets/madrid-ola-signe.png" /><div class="archive-overlay"><div class="archive-title">OLA CUNEF</div><div class="archive-sub">International</div></div></div>
+      <div class="grid-card" onclick="openModal('assets/tc-talent-action.jpg', 'TC Talent Event')"><img class="archive-img" src="assets/tc-talent-action.jpg" /><div class="archive-overlay"><div class="archive-title">TC Talent Live</div><div class="archive-sub">Gestion de Projet</div></div></div>
+      <div class="grid-card" onclick="openModal('assets/saphir-produit.jpg', 'Shooting Saphir')"><img class="archive-img" src="assets/saphir-produit.jpg" /><div class="archive-overlay"><div class="archive-title">Saphir Fashion</div><div class="archive-sub">Entrepreneuriat</div></div></div>
+    </div>
+
+    <div class="toggle-view-container reveal reveal-delay-2">
+      <button id="toggle-livrables-btn" class="btn-secondary" onclick="toggleLivrables()">
+        <span class="fr">Explorer toutes les archives</span><span class="en">Explore all archives</span>
+      </button>
+    </div>
+  </section>
+
+  <footer id="contact">
+    <div class="section-label reveal" style="margin-bottom: 2rem;"><span class="fr">Contact</span><span class="en">Contact</span></div>
+    <div class="contact-card reveal">
+      <div class="contact-info">
+        <h2 class="fr">Travaillons <span>ensemble.</span></h2>
+        <h2 class="en">Let's work <span>together.</span></h2>
+        <p class="fr">Un projet, une opportunité de collaboration ou une poursuite d'études stratégique ? Mon profil réactif et orienté résultats est à votre écoute.</p>
+        <p class="en">A project, an opportunity, or a strategic partnership? Let's connect and build the next steps together.</p>
+        <div class="contact-links">
+          <a href="mailto:maxime.marchandier@etu.u-bordeaux.fr" class="contact-item">
+            <svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            maxime.marchandier@etu.u-bordeaux.fr
+          </a>
+          <a href="tel:+33767875650" class="contact-item">
+            <svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            +33 7 67 87 56 50
+          </a>
+          <a href="https://www.linkedin.com/in/maxime-marchandier-283942292/" target="_blank" class="contact-item">
+            <svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            LinkedIn · Connexion Profil
+          </a>
+        </div>
+      </div>
+      <div class="contact-actions">
+        <div class="qr-box">
+          <img src="assets/qr-linkedin.png" alt="QR Code LinkedIn Maxime Marchandier" />
+          <span class="fr">Scanner pour connecter</span><span class="en">Scan to connect</span>
+        </div>
+        <a href="assets/memoire-maxime.pdf" target="_blank" class="btn-secondary" style="margin-top:1.5rem; width:100%; text-align:center;">
+          <span class="fr">Consulter mon mémoire (PDF)</span><span class="en">Read my thesis (PDF)</span>
+        </a>
+      </div>
+    </div>
+    <div class="copyright reveal">
+      <span>© 2026 Maxime Marchandier — Portfolio BUT TC S6 Parcours MDEE</span>
+      <span style="color: rgba(184,115,51,.4);">Bordeaux · Madrid</span>
+    </div>
+  </footer>
+
+  <div id="modal-overlay">
+    <div id="modal-box">
+      <button id="modal-close" onclick="closeModal()">✕</button>
+      <img id="modal-img" src="" alt="" />
+      <div id="modal-caption"></div>
+    </div>
+  </div>
+
+  <script>
+    // BILINGUAL ADAPTATION JS
+    function setLang(lang) {
+      document.body.className = 'lang-' + lang;
+      document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+      event.target.classList.add('active');
+    }
+
+    // LIVRABLES TOGGLE (MARQUEE <-> GRID)
+    function toggleLivrables() {
+      const marquee = document.getElementById('livrables-marquee');
+      const grid = document.getElementById('livrables-grid');
+      const btn = document.getElementById('toggle-livrables-btn');
+      
+      if(grid.style.display === 'grid') {
+        grid.style.display = 'none';
+        marquee.style.display = 'block';
+        btn.innerHTML = '<span class="fr">Explorer toutes les archives</span><span class="en">Explore all archives</span>';
+      } else {
+        marquee.style.display = 'none';
+        grid.style.display = 'grid';
+        btn.innerHTML = '<span class="fr">Fermer la grille</span><span class="en">Close grid</span>';
+      }
+    }
+
+    // MATH APPLIED 3D INERTIA TILT ON EXPERIENCES CARDS
+    document.querySelectorAll('.grand-card').forEach(card => {
+      card.addEventListener('mousemove', e => {
+        const r = card.getBoundingClientRect();
+        const rotX = ((e.clientY - r.top - r.height/2) / (r.height/2)) * -4; 
+        const rotY = ((e.clientX - r.left - r.width/2) / (r.width/2)) * 4;
+        card.style.transform = `perspective(1200px) rotateX(${rotX}deg) rotateY(${rotY}deg) scale3d(1.01,1.01,1.01)`;
+      });
+      card.addEventListener('mouseleave', () => card.style.transform = 'perspective(1200px) rotateX(0) rotateY(0) scale3d(1,1,1)');
+    });
+
+    // CUSTOM SYSTEM CURSOR
+    const dot = document.getElementById('cursor-dot'); const ring = document.getElementById('cursor-ring');
+    let mx = 0, my = 0, rx = 0, ry = 0;
+    document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; dot.style.left = mx + 'px'; dot.style.top = my + 'px'; });
+    function animRing() { rx += (mx - rx) * .12; ry += (my - ry) * .12; ring.style.left = rx + 'px'; ring.style.top = ry + 'px'; requestAnimationFrame(animRing); }
+    animRing();
+
+    // INTERSECTION OBSERVER FOR ACCELERATED SCROLL REVEAL
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // PROGRESS BAR HEADER SYNC
+    window.addEventListener('scroll', () => {
+      document.getElementById('scroll-progress').style.width = (window.scrollY / (document.body.scrollHeight - window.innerHeight) * 100) + '%';
+      document.getElementById('main-nav').classList.toggle('scrolled', window.scrollY > 60);
+    }, { passive: true });
+
+    // EXPERIENCE VIEWPOT TRACK SLIDER
+    const expTrack = document.getElementById('expTrack');
+    const slides = document.querySelectorAll('.exp-slide');
+    const dotsContainer = document.getElementById('expDotsContainer');
+    let activeExpIdx = 0;
+
+    slides.forEach((_, idx) => {
+      const dotBtn = document.createElement('button');
+      dotBtn.className = 'exp-dot' + (idx === 0 ? ' active' : '');
+      dotBtn.addEventListener('click', () => jumpToSlide(idx));
+      dotsContainer.appendChild(dotBtn);
+    });
+
+    const dots = document.querySelectorAll('.exp-dot');
+
+    function updateExpSlider() {
+      expTrack.style.transform = `translateX(-${activeExpIdx * 100}%)`;
+      dots.forEach((d, idx) => d.classList.toggle('active', idx === activeExpIdx));
+    }
+
+    function shiftExp(direction) {
+      activeExpIdx = (activeExpIdx + direction + slides.length) % slides.length;
+      updateExpSlider();
+    }
+
+    function jumpToSlide(idx) {
+      activeExpIdx = idx;
+      updateExpSlider();
+    }
+
+    // MODAL WINDOW CONTROL
+    const overlay = document.getElementById('modal-overlay'), modalImg = document.getElementById('modal-img'), modalCap = document.getElementById('modal-caption');
+    function openModal(src, cap) { modalImg.src = src; modalCap.textContent = cap; overlay.classList.add('active'); document.body.style.overflow = 'hidden'; }
+    function closeModal() { overlay.classList.remove('active'); document.body.style.overflow = ''; setTimeout(() => { modalImg.src = ''; }, 300); }
+    overlay.addEventListener('click', e => { if (e.target === overlay) closeModal(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+  </script>
+</body>
+</html>
