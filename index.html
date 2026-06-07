@@ -149,11 +149,9 @@
     .exp-card-period { font-size: .75rem; color: var(--muted); letter-spacing: .05em; margin-bottom: 1.2rem; }
     .grand-card-info p { font-size: .92rem; color: var(--sand-lt); opacity: 0.9; line-height: 1.7; margin-bottom: 1.5rem; text-align: justify; }
     
-    /* BADGES DE COMPÉTENCES (Nouveau, validé BUT) */
     .tc-badges { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 1.8rem; }
     .tc-badges span { font-size: 0.6rem; letter-spacing: 0.05em; text-transform: uppercase; background: rgba(184,115,51,0.15); color: var(--copper-lt); padding: 4px 10px; border-radius: 20px; border: 1px solid rgba(184,115,51,0.3); font-weight: 600; }
 
-    /* IMAGE CORRIGÉE (Aspect-ratio & Contain) */
     .grand-card-media { display: flex; justify-content: center; align-items: center; height: 100%; transform: translateZ(30px); background: rgba(255,255,255,0.02); border-radius: 8px; padding: 1.5rem; border: 1px solid rgba(255,255,255,0.03); }
     .grand-card-media img { max-width: 100%; height: auto; max-height: 300px; object-fit: contain; filter: drop-shadow(0 15px 30px rgba(0,0,0,0.4)); }
     
@@ -216,10 +214,10 @@
     .qr-box span { display: block; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); }
     .copyright { font-size: .68rem; color: rgba(122,138,154,.4); padding-top: 3rem; margin-top: 3rem; border-top: 1px solid rgba(201,185,154,.06); display: flex; justify-content: space-between; letter-spacing: 0.05em; }
 
-    /* ─── LIGHTBOX MODAL ─────────────────────────────────────────── */
+    /* ─── LIGHTBOX MODAL CONTAINER ─────────────────────────────── */
     #modal-overlay { position: fixed; inset: 0; z-index: 2000; background: rgba(8,13,26,.94); backdrop-filter: blur(12px); display: none; align-items: center; justify-content: center; padding: 2rem; }
     #modal-overlay.active { display: flex; }
-    #modal-box { position: relative; max-width: 900px; width: 100%; max-height: 85vh; background: var(--navy-mid); border: 1px solid rgba(201,185,154,.12); border-radius: 6px; overflow: hidden; }
+    #modal-box { position: relative; max-width: 900px; width: 100%; max-height: 85vh; background: var(--navy-mid); border: 1px solid rgba(201,185,154,.12); border-radius: 4px; overflow: hidden; }
     #modal-img { width: 100%; display: block; max-height: 75vh; object-fit: contain; background: var(--night); }
     #modal-caption { padding: 1.2rem; font-size: .8rem; color: var(--sand-lt); background: var(--navy); font-weight: 500; }
     #modal-close { position: absolute; top: 1rem; right: 1rem; background: rgba(11,17,32,.8); color: var(--white); width: 38px; height: 38px; border-radius: 50%; border: none; cursor: none; font-size: 1rem; display: flex; align-items: center; justify-content: center; transition: background 0.3s; }
@@ -312,8 +310,7 @@
       </div>
 
       <div class="bilan-encadre reveal">
-        <h3 class="fr">Bilan BUT TC — 3 ans</h3>
-        <h3 class="en">3-Year Degree Overview</h3>
+        <h3>Bilan BUT TC — 3 ans</h3>
         <p class="fr">Loin d'un simple apprentissage théorique, ces trois années ont été un véritable <b>tremplin professionnel</b>. J'y ai découvert une appétence forte pour le digital. Mes stages successifs et mon alternance m'ont permis de passer de l'idée à l'action : <b>pilotage de campagnes, gestion e-commerce en autonomie, et structuration de projets</b>. La formation pluridisciplinaire de Tech de Co m'a ouvert les yeux sur des outils et des pratiques que j'utilise aujourd'hui au quotidien.<br><br>L'ouverture internationale, amorcée par mon stage à <b>Valencia</b> (Espagne), a définitivement orienté mes objectifs. Je sais aujourd'hui ce que je veux construire et ma stratégie se déploie en deux temps : une <b>expatriation académique à Madrid (2026-2027)</b> pour me tester sur le terrain et perfectionner mes compétences linguistiques, suivie de l'<b>intégration d'un Master d'excellence dès mon retour en 2028</b>.</p>
         <p class="en">Far from simple theory, these three years were a true professional springboard. Successive internships and my apprenticeship allowed me to move from ideas to action. International exposure in <b>Valencia</b> shaped my goals. My objective is to reach a strategic milestone by spending an academic language immersion year in <b>Madrid (2026-2027)</b>, followed by an elite <b>Master's degree program starting in 2028</b>.</p>
       </div>
@@ -342,7 +339,7 @@
       <div class="matrix-box reveal reveal-delay-1">
         <h3 class="fr">Langues & Vision Commerciale</h3><h3 class="en">Languages & Commerce</h3>
         <ul class="soft-list" style="margin-bottom: 2rem;">
-          <li><span>🇬🇧</span> <div class="fr"><b>Anglais :</b> TOEIC 810 (Niveau opérationnel validé)</div><div class="en"><b>English:</b> TOEIC 810 (Validated working proficiency)</div></li>
+          <li><span>🇬🇧</span> <div class="fr"><b>Anglais :</b> TOEIC 810 (Niveau opérationnel validé)</div><div class="en"><b>English:</b> TOEIC 810 (Professional working proficiency)</div></li>
           <li><span>🇪🇸</span> <div class="fr"><b>Espagnol :</b> Niveau B2 certifié (Prêt pour l'expatriation à Madrid)</div><div class="en"><b>Spanish:</b> B2 Certified (Ready for Madrid university exchange)</div></li>
         </ul>
         <h3 class="fr">Hard Skills • Apport Tech de Co</h3><h3 class="en">Hard Skills & Frameworks</h3>
@@ -393,14 +390,14 @@
                 <div class="exp-card-tag"><span class="fr">Alternance • E-Commerce Stratégique</span><span class="en">Apprenticeship • Strategic E-Commerce</span></div>
                 <h3>La Parfumerie Bordelaise</h3>
                 <div class="exp-card-period">2025 – 2026 • Bordeaux</div>
-                <p class="fr">Migration intégrale du site web vers <span class="highlight-keyword">Shopify</span> et structuration du catalogue (<span class="highlight-keyword">+600 références</span>). Rédaction de fiches produits optimisées et déploiement d'une stratégie <span class="highlight-keyword">SEO</span> pour capter du trafic qualifié. Création d'un <span class="highlight-keyword">Diagnostic Olfactif interactif</span>. Conseil expert en parfumerie de niche, accompagnement d'une clientèle exigeante et fidélisation en boutique.</p>
+                <p class="fr">Migration intégrale du site web vers <span class="highlight-keyword">Shopify</span> et structuration du catalogue (<span class="highlight-keyword">+600 références</span>). Rédaction de fiches produits optimisées et déploiement d'une stratégie <span class="highlight-keyword">SEO</span> pour capter du trafic qualifié. Création d'un <span class="highlight-keyword">Diagnostic Olfactif interactif</span>. Conseil expert en boutique.</p>
                 <div class="tc-badges">
                   <span>E-Commerce</span><span>SEO Sémantique</span><span>Brand Content</span>
                 </div>
                 <div class="exp-card-actions">
                   <button class="livrable-btn" onclick="openModal('assets/shopify-accueil.jpg', 'Shopify Vitrine')">Shopify Vitrine</button>
-                  <button class="livrable-btn" onclick="openModal('assets/fiche-produit-boutique.jpg', 'Fiche Boutique')">Fiche Boutique</button>
-                  <button class="livrable-btn" onclick="openModal('assets/diagnostic-interface.jpg', 'Diagnostic UX')">Diagnostic UX</button>
+                  <button class="livrable-btn" onclick="openModal('assets/fiche-produit-boutique.JPG', 'Fiche Boutique')">Fiche Boutique</button>
+                  <button class="livrable-btn" onclick="openModal('assets/diagnostic-interface.JPG', 'Diagnostic UX')">Diagnostic UX</button>
                 </div>
               </div>
               <div class="grand-card-media"><img src="assets/lpb-interieur.jpg" alt="La Parfumerie Interieur" /></div>
@@ -414,26 +411,26 @@
                 <div class="exp-card-tag"><span class="fr">Entrepreneuriat • Direction de Marque</span><span class="en">Entrepreneurship • Brand Management</span></div>
                 <h3>Saphir — Prêt-à-porter</h3>
                 <div class="exp-card-period"><span class="fr">Projet Co-fondateur • Mode</span><span class="en">Co-founder Project • Fashion</span></div>
-                <p class="fr">Pendant mon année de terminale, passionné de mode, j'ai eu l'opportunité avec un ami de cofonder <b>Saphir</b>, une marque de prêt-à-porter. Cette expérience m'a permis de développer des compétences clés en matière de rédaction de <span class="highlight-keyword">cahiers des charges</span>, de démarchage de fournisseurs, de <span class="highlight-keyword">négociation de prix</span> et de gestion des délais. J'ai également appris à être créatif, à résoudre des problèmes rapidement et à prendre des décisions importantes. Première capsule lancée en <span class="highlight-keyword">rupture de stock complète</span>.</p>
+                <p class="fr">Pendant mon année de terminale, passionné de mode, j'ai eu l'opportunité avec un ami de cofonder <b>Saphir</b>, une marque de prêt-à-porter. Cette expérience m'a permis de développer des compétences clés en matière de rédaction de <span class="highlight-keyword">cahiers des charges</span>, de démarchage de fournisseurs, de <span class="highlight-keyword">négociation de prix</span> et de gestion des délais. Première capsule en rupture complète.</p>
                 <div class="tc-badges">
                   <span>Entrepreneuriat</span><span>Négociation B2B</span><span>Gestion de Projet</span>
                 </div>
                 <div class="exp-card-actions">
-                  <button class="livrable-btn" onclick="openModal('assets/saphir-produit.jpg', 'Saphir — Catalogue produit')">Shooting Produit</button>
+                  <button class="livrable-btn" onclick="openModal('assets/saphir-produit.JPG', 'Saphir — Catalogue produit')">Shooting Produit</button>
                 </div>
               </div>
-              <div class="grand-card-media"><img src="assets/saphir-produit.jpg" alt="Saphir Produit Studio" /></div>
+              <div class="grand-card-media"><img src="assets/saphir-produit.JPG" alt="Saphir Produit Studio" /></div>
             </div>
           </div>
 
           <div class="exp-slide">
             <div class="grand-card">
               <div class="grand-card-info">
-                <div class="exp-card-logo-container" style="background:#ffffff; padding:8px; border-radius:4px;"><img src="assets/courir-logo.jpg" alt="Courir" class="exp-card-logo" /></div>
+                <div class="exp-card-logo-container"><img src="assets/courir-logo.jpg" alt="Courir" class="exp-card-logo" /></div>
                 <div class="exp-card-tag" style="color:var(--copper-lt);"><span class="fr">Stage • Vente Omnicanale</span><span class="en">Internship • Omnichannel Retail Sales</span></div>
                 <h3>Courir</h3>
                 <div class="exp-card-period">2024 • Performance Commerciale</div>
-                <p class="fr">Gestion de fortes affluences en période de soldes et application de techniques d'argumentation commerciale directe en face-à-face. Traitement des objections et encaissement fluide. Performance individuelle marquante de <span class="highlight-keyword">12 000 € de CA</span> réalisé sur une seule période de rush de <span class="highlight-keyword">3 semaines</span>.</p>
+                <p class="fr">Gestion de fortes affluences en période de soldes et application de techniques d'argumentation directe en face-à-face. Traitement des objections et encaissement fluide. Performance individuelle de <span class="highlight-keyword">12 000 € de CA</span> réalisé en <span class="highlight-keyword">3 semaines</span>.</p>
                 <div class="tc-badges">
                   <span>Vente B2C</span><span>Performance Commerciale</span><span>Relation Client</span>
                 </div>
@@ -449,7 +446,7 @@
                 <div class="exp-card-tag"><span class="fr">Stage • Acquisition Organique & Sociale</span><span class="en">Internship • SEO & Social Growth</span></div>
                 <h3>CDLZ Marketing & Mo'Bike</h3>
                 <div class="exp-card-period">2025 • <span class="fr">Bordeaux & Espagne</span><span class="en">Bordeaux & Spain</span></div>
-                <p class="fr"><b>CDLZ Marketing :</b> Stage de 2 mois. Rédaction et optimisation de <span class="highlight-keyword">+70 articles de blog</span> stratégiques. Travail approfondi sur la sémantique et le maillage interne pour positionner les clients en première page Google. Analyse de Performance via Google Search Console.<br><br><b>Mo'Bike (Valence) :</b> Accueil, conseil et vente en <span class="highlight-keyword">Anglais et Espagnol</span> en contexte touristique intense. Animation du compte Instagram (Community Management) et création de contenus visuels.</p>
+                <p class="fr"><b>CDLZ :</b> Rédaction et optimisation de <span class="highlight-keyword">+70 articles de blog</span>. Outils Google Search Console.<br><br><b>Mo'Bike (Valence) :</b> Accueil, conseil et vente en <span class="highlight-keyword">Anglais et Espagnol</span> en contexte touristique intense. Gestion écosystème Instagram.</p>
                 <div class="tc-badges">
                   <span>SEO Stratégique</span><span>Community Management</span><span>International</span>
                 </div>
@@ -468,15 +465,15 @@
                 <div class="exp-card-tag" style="color:var(--sand);"><span class="fr">Gestion de Projet • Événementiel</span><span class="en">Project Management • Corporate Event</span></div>
                 <h3>TC Talent — Événementiel</h3>
                 <div class="exp-card-period">IUT de Bordeaux • Co-Chef de Projet</div>
-                <p class="fr">Direction d'un projet événementiel d'envergure (Atelier Couture) avec une contrainte stricte de <span class="highlight-keyword">0€ de budget</span> initial. Négociation complexe de partenariats logistiques (prêt de matériel par une école technique, accords d'assurances) et management d'équipe. Déploiement d'une communication omnicanale virale validant <span class="highlight-keyword">100% de remplissage</span>.</p>
+                <p class="fr">Direction d'un projet événementiel d'envergure (Atelier Couture) soumis à une contrainte stricte de <span class="highlight-keyword">0€ de budget</span> initial. Logistique et partenariats matériels. Communication omnicanale virale pour <span class="highlight-keyword">100% de remplissage</span>.</p>
                 <div class="tc-badges">
                   <span>Gestion de Projet</span><span>Partenariats</span><span>Communication B2C</span>
                 </div>
                 <div class="exp-card-actions">
-                  <button class="livrable-btn" onclick="openModal('assets/tc-talent-action.jpg', 'TC Talent — Événement Live')">Événement Live</button>
+                  <button class="livrable-btn" onclick="openModal('assets/tc-talent-action.JPG', 'TC Talent — Événement Live')">Événement Live</button>
                 </div>
               </div>
-              <div class="grand-card-media"><img src="assets/tc-talent-action.jpg" alt="TC Talent Design Artwork" /></div>
+              <div class="grand-card-media"><img src="assets/tc-talent-action.JPG" alt="TC Talent Design Artwork" /></div>
             </div>
           </div>
 
@@ -487,7 +484,7 @@
                 <div class="exp-card-tag" style="color:#ef4444;"><span class="fr">Stage • Développement Commercial Terrain</span><span class="en">Internship • Field Sales Development</span></div>
                 <h3>Sud Ouest</h3>
                 <div class="exp-card-period">2023 • Animation & Prospection</div>
-                <p class="fr">Animation de stand et prospection active lors de la Foire Internationale de Bordeaux. Présentation des offres et argumentation commerciale structurée pour transformer les prospects en abonnés longue durée. <b>Performance :</b> Atteinte rigoureuse des objectifs de vente quotidiens et remontée d'informations terrain pour optimiser les outils d'aide à la vente (PVA).</p>
+                <p class="fr">Animation de stand et prospection active lors de la Foire Internationale de Bordeaux. Présentation des offres et argumentation commerciale structurée pour transformer les prospects en abonnés longue durée.</p>
                 <div class="tc-badges">
                   <span>Prospection</span><span>Vente Directe</span><span>Fidélisation</span>
                 </div>
@@ -519,21 +516,18 @@
         <div class="timeline-phase"><span class="fr">Horizon Court — 2026 / 2027</span><span class="en">Short Term — 2026 / 2027</span></div>
         <h3><span class="fr">Expatriation Universitaire Globale</span><span class="en">Global University Expatriation</span><br><em>Madrid · CUNEF Universidad</em></h3>
         <p class="fr">Départ d'un an validé pour suivre un cursus d'excellence bilingue à Madrid (CUNEF). Immersion culturelle et linguistique totale permettant de perfectionner mon niveau de langue en situation réelle avant de postuler en Master.</p>
-        <p class="en">A one-year departure approved to follow an excellent bilingual curriculum in Madrid (CUNEF). Total cultural and linguistic immersion to adapt my e-commerce skills to European markets.</p>
       </div>
       <div class="timeline-item reveal">
         <div class="timeline-dot"></div>
         <div class="timeline-phase"><span class="fr">Horizon Moyen — 2027 / 2028</span><span class="en">Medium Term — 2027 / 2028</span></div>
         <h3>Master Spécialisé Hybride<br><em><span class="fr">Stratégie Digitale Internationale & E-Commerce</span><span class="en">International Digital Strategy & E-Commerce</span></em></h3>
         <p class="fr">Intégration d'une formation supérieure (Montpellier, IAE Bordeaux/Nice, Bayonne) visant à lier l'expansion commerciale et les courants digitaux. En format d'alternance, cette spécialisation me permettra d'approfondir selon les opportunités soit la <i>Data Analytics</i> (CRO, leviers d'acquisition complexes), soit la dimension <i>Internationale</i> du management stratégique.</p>
-        <p class="en">High-level specialization to combine international expansion strategies and digital trends. Deepening complex acquisition levers, advanced data analytics, and Conversion Rate Optimization (CRO).</p>
       </div>
       <div class="timeline-item reveal">
         <div class="timeline-dot"></div>
         <div class="timeline-phase"><span class="fr">Horizon Long — 2028+</span><span class="en">Long Term — 2028+</span></div>
         <h3>Manager Stratégique<br><em><span class="fr">Omnicanal & International Commerce</span><span class="en">Omnichannel & International Commerce</span></em></h3>
         <p class="fr">Prendre la direction de projets e-commerce globaux et internationaux, idéalement dans l'univers du prêt-à-porter, de la parfumerie confidentielle ou des maisons de luxe. Lier vision créative et performance numérique à l'échelle mondiale.</p>
-        <p class="en">Taking the lead of global e-commerce projects, ideally in high-end fashion, niche perfumery, or luxury houses. Combining creative vision and digital performance on a global scale.</p>
       </div>
     </div>
   </section>
@@ -547,27 +541,28 @@
     <div id="livrables-marquee" class="marquee-container reveal">
       <div class="marquee-track">
         <div class="marquee-card" onclick="openModal('assets/shopify-accueil.jpg', 'Shopify Vitrine')"><img class="archive-img" src="assets/shopify-accueil.jpg" /><div class="archive-overlay"><div class="archive-title">Shopify Vitrine</div><div class="archive-sub">E-Commerce</div></div></div>
-        <div class="marquee-card" onclick="openModal('assets/diagnostic-interface.jpg', 'Diagnostic UX')"><img class="archive-img" src="assets/diagnostic-interface.jpg" /><div class="archive-overlay"><div class="archive-title">Diagnostic UX</div><div class="archive-sub">Marketing Digital</div></div></div>
-        <div class="marquee-card" onclick="openModal('assets/fiche-produit-boutique.jpg', 'Fiche Produit Client')"><img class="archive-img" src="assets/fiche-produit-boutique.jpg" /><div class="archive-overlay"><div class="archive-title">Fiche Produit</div><div class="archive-sub">SEO / Intégration</div></div></div>
-        <div class="marquee-card" onclick="openModal('assets/madrid-ola-signe.png', 'OLA CUNEF Madrid')"><img class="archive-img" src="assets/madrid-ola-signe.png" /><div class="archive-overlay"><div class="archive-title">OLA CUNEF</div><div class="archive-sub">International</div></div></div>
-        <div class="marquee-card" onclick="openModal('assets/tc-talent-action.jpg', 'TC Talent Event')"><img class="archive-img" src="assets/tc-talent-action.jpg" /><div class="archive-overlay"><div class="archive-title">TC Talent Live</div><div class="archive-sub">Gestion de Projet</div></div></div>
-        <div class="marquee-card" onclick="openModal('assets/saphir-produit.jpg', 'Shooting Saphir')"><img class="archive-img" src="assets/saphir-produit.jpg" /><div class="archive-overlay"><div class="archive-title">Saphir Fashion</div><div class="archive-sub">Entrepreneuriat</div></div></div>
+        <div class="marquee-card" onclick="openModal('assets/diagnostic-interface.JPG', 'Diagnostic UX')"><img class="archive-img" src="assets/diagnostic-interface.JPG" /><div class="archive-overlay"><div class="archive-title">Diagnostic UX</div><div class="archive-sub">Marketing Digital</div></div></div>
+        <div class="marquee-card" onclick="openModal('assets/fiche-produit-boutique.JPG', 'Fiche Produit Client')"><img class="archive-img" src="assets/fiche-produit-boutique.JPG" /><div class="archive-overlay"><div class="archive-title">Fiche Produit</div><div class="archive-sub">SEO / Intégration</div></div></div>
+        <div class="marquee-card" onclick="openModal('assets/madrid-ola-signe.PNG', 'OLA CUNEF Madrid')"><img class="archive-img" src="assets/madrid-ola-signe.PNG" /><div class="archive-overlay"><div class="archive-title">OLA CUNEF</div><div class="archive-sub">International</div></div></div>
+        <div class="marquee-card" onclick="openModal('assets/tc-talent-action.JPG', 'TC Talent Event')"><img class="archive-img" src="assets/tc-talent-action.JPG" /><div class="archive-overlay"><div class="archive-title">TC Talent Live</div><div class="archive-sub">Gestion de Projet</div></div></div>
+        <div class="marquee-card" onclick="openModal('assets/saphir-produit.JPG', 'Shooting Saphir')"><img class="archive-img" src="assets/saphir-produit.JPG" /><div class="archive-overlay"><div class="archive-title">Saphir Fashion</div><div class="archive-sub">Entrepreneuriat</div></div></div>
+        
         <div class="marquee-card" onclick="openModal('assets/shopify-accueil.jpg', 'Shopify Vitrine')"><img class="archive-img" src="assets/shopify-accueil.jpg" /><div class="archive-overlay"><div class="archive-title">Shopify Vitrine</div><div class="archive-sub">E-Commerce</div></div></div>
-        <div class="marquee-card" onclick="openModal('assets/diagnostic-interface.jpg', 'Diagnostic UX')"><img class="archive-img" src="assets/diagnostic-interface.jpg" /><div class="archive-overlay"><div class="archive-title">Diagnostic UX</div><div class="archive-sub">Marketing Digital</div></div></div>
-        <div class="marquee-card" onclick="openModal('assets/fiche-produit-boutique.jpg', 'Fiche Produit Client')"><img class="archive-img" src="assets/fiche-produit-boutique.jpg" /><div class="archive-overlay"><div class="archive-title">Fiche Produit</div><div class="archive-sub">SEO / Intégration</div></div></div>
-        <div class="marquee-card" onclick="openModal('assets/madrid-ola-signe.png', 'OLA CUNEF Madrid')"><img class="archive-img" src="assets/madrid-ola-signe.png" /><div class="archive-overlay"><div class="archive-title">OLA CUNEF</div><div class="archive-sub">International</div></div></div>
-        <div class="marquee-card" onclick="openModal('assets/tc-talent-action.jpg', 'TC Talent Event')"><img class="archive-img" src="assets/tc-talent-action.jpg" /><div class="archive-overlay"><div class="archive-title">TC Talent Live</div><div class="archive-sub">Gestion de Projet</div></div></div>
-        <div class="marquee-card" onclick="openModal('assets/saphir-produit.jpg', 'Shooting Saphir')"><img class="archive-img" src="assets/saphir-produit.jpg" /><div class="archive-overlay"><div class="archive-title">Saphir Fashion</div><div class="archive-sub">Entrepreneuriat</div></div></div>
+        <div class="marquee-card" onclick="openModal('assets/diagnostic-interface.JPG', 'Diagnostic UX')"><img class="archive-img" src="assets/diagnostic-interface.JPG" /><div class="archive-overlay"><div class="archive-title">Diagnostic UX</div><div class="archive-sub">Marketing Digital</div></div></div>
+        <div class="marquee-card" onclick="openModal('assets/fiche-produit-boutique.JPG', 'Fiche Produit Client')"><img class="archive-img" src="assets/fiche-produit-boutique.JPG" /><div class="archive-overlay"><div class="archive-title">Fiche Produit</div><div class="archive-sub">SEO / Intégration</div></div></div>
+        <div class="marquee-card" onclick="openModal('assets/madrid-ola-signe.PNG', 'OLA CUNEF Madrid')"><img class="archive-img" src="assets/madrid-ola-signe.PNG" /><div class="archive-overlay"><div class="archive-title">OLA CUNEF</div><div class="archive-sub">International</div></div></div>
+        <div class="marquee-card" onclick="openModal('assets/tc-talent-action.JPG', 'TC Talent Event')"><img class="archive-img" src="assets/tc-talent-action.JPG" /><div class="archive-overlay"><div class="archive-title">TC Talent Live</div><div class="archive-sub">Gestion de Projet</div></div></div>
+        <div class="marquee-card" onclick="openModal('assets/saphir-produit.JPG', 'Shooting Saphir')"><img class="archive-img" src="assets/saphir-produit.JPG" /><div class="archive-overlay"><div class="archive-title">Saphir Fashion</div><div class="archive-sub">Entrepreneuriat</div></div></div>
       </div>
     </div>
 
     <div id="livrables-grid" class="static-grid-container">
       <div class="grid-card" onclick="openModal('assets/shopify-accueil.jpg', 'Shopify Vitrine')"><img class="archive-img" src="assets/shopify-accueil.jpg" /><div class="archive-overlay"><div class="archive-title">Shopify Vitrine</div><div class="archive-sub">E-Commerce</div></div></div>
-      <div class="grid-card" onclick="openModal('assets/diagnostic-interface.jpg', 'Diagnostic UX')"><img class="archive-img" src="assets/diagnostic-interface.jpg" /><div class="archive-overlay"><div class="archive-title">Diagnostic UX</div><div class="archive-sub">Marketing Digital</div></div></div>
-      <div class="grid-card" onclick="openModal('assets/fiche-produit-boutique.jpg', 'Fiche Produit Client')"><img class="archive-img" src="assets/fiche-produit-boutique.jpg" /><div class="archive-overlay"><div class="archive-title">Fiche Produit</div><div class="archive-sub">SEO / Intégration</div></div></div>
-      <div class="grid-card" onclick="openModal('assets/madrid-ola-signe.png', 'OLA CUNEF Madrid')"><img class="archive-img" src="assets/madrid-ola-signe.png" /><div class="archive-overlay"><div class="archive-title">OLA CUNEF</div><div class="archive-sub">International</div></div></div>
-      <div class="grid-card" onclick="openModal('assets/tc-talent-action.jpg', 'TC Talent Event')"><img class="archive-img" src="assets/tc-talent-action.jpg" /><div class="archive-overlay"><div class="archive-title">TC Talent Live</div><div class="archive-sub">Gestion de Projet</div></div></div>
-      <div class="grid-card" onclick="openModal('assets/saphir-produit.jpg', 'Shooting Saphir')"><img class="archive-img" src="assets/saphir-produit.jpg" /><div class="archive-overlay"><div class="archive-title">Saphir Fashion</div><div class="archive-sub">Entrepreneuriat</div></div></div>
+      <div class="grid-card" onclick="openModal('assets/diagnostic-interface.JPG', 'Diagnostic UX')"><img class="archive-img" src="assets/diagnostic-interface.JPG" /><div class="archive-overlay"><div class="archive-title">Diagnostic UX</div><div class="archive-sub">Marketing Digital</div></div></div>
+      <div class="grid-card" onclick="openModal('assets/fiche-produit-boutique.JPG', 'Fiche Produit Client')"><img class="archive-img" src="assets/fiche-produit-boutique.JPG" /><div class="archive-overlay"><div class="archive-title">Fiche Produit</div><div class="archive-sub">SEO / Intégration</div></div></div>
+      <div class="grid-card" onclick="openModal('assets/madrid-ola-signe.PNG', 'OLA CUNEF Madrid')"><img class="archive-img" src="assets/madrid-ola-signe.PNG" /><div class="archive-overlay"><div class="archive-title">OLA CUNEF</div><div class="archive-sub">International</div></div></div>
+      <div class="grid-card" onclick="openModal('assets/tc-talent-action.JPG', 'TC Talent Event')"><img class="archive-img" src="assets/tc-talent-action.JPG" /><div class="archive-overlay"><div class="archive-title">TC Talent Live</div><div class="archive-sub">Gestion de Projet</div></div></div>
+      <div class="grid-card" onclick="openModal('assets/saphir-produit.JPG', 'Shooting Saphir')"><img class="archive-img" src="assets/saphir-produit.JPG" /><div class="archive-overlay"><div class="archive-title">Saphir Fashion</div><div class="archive-sub">Entrepreneuriat</div></div></div>
     </div>
 
     <div class="toggle-view-container reveal reveal-delay-2">
@@ -602,7 +597,7 @@
       </div>
       <div class="contact-actions">
         <div class="qr-box">
-          <img src="assets/qr-linkedin.png" alt="QR Code LinkedIn Maxime Marchandier" />
+          <img src="assets/qr-linkedin.png" alt="QR Code LinkedIn" />
           <span class="fr">Scanner pour connecter</span><span class="en">Scan to connect</span>
         </div>
         <a href="assets/memoire-maxime.pdf" target="_blank" class="btn-secondary" style="margin-top:1.5rem; width:100%; text-align:center;">
@@ -625,19 +620,16 @@
   </div>
 
   <script>
-    // BILINGUAL ADAPTATION JS
     function setLang(lang) {
       document.body.className = 'lang-' + lang;
       document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
       event.target.classList.add('active');
     }
 
-    // LIVRABLES TOGGLE (MARQUEE <-> GRID)
     function toggleLivrables() {
       const marquee = document.getElementById('livrables-marquee');
       const grid = document.getElementById('livrables-grid');
       const btn = document.getElementById('toggle-livrables-btn');
-      
       if(grid.style.display === 'grid') {
         grid.style.display = 'none';
         marquee.style.display = 'block';
@@ -649,7 +641,6 @@
       }
     }
 
-    // MATH APPLIED 3D INERTIA TILT ON EXPERIENCES CARDS
     document.querySelectorAll('.grand-card').forEach(card => {
       card.addEventListener('mousemove', e => {
         const r = card.getBoundingClientRect();
@@ -660,26 +651,22 @@
       card.addEventListener('mouseleave', () => card.style.transform = 'perspective(1200px) rotateX(0) rotateY(0) scale3d(1,1,1)');
     });
 
-    // CUSTOM SYSTEM CURSOR
     const dot = document.getElementById('cursor-dot'); const ring = document.getElementById('cursor-ring');
     let mx = 0, my = 0, rx = 0, ry = 0;
     document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; dot.style.left = mx + 'px'; dot.style.top = my + 'px'; });
     function animRing() { rx += (mx - rx) * .12; ry += (my - ry) * .12; ring.style.left = rx + 'px'; ring.style.top = ry + 'px'; requestAnimationFrame(animRing); }
     animRing();
 
-    // INTERSECTION OBSERVER FOR ACCELERATED SCROLL REVEAL
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
     }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-    // PROGRESS BAR HEADER SYNC
     window.addEventListener('scroll', () => {
       document.getElementById('scroll-progress').style.width = (window.scrollY / (document.body.scrollHeight - window.innerHeight) * 100) + '%';
       document.getElementById('main-nav').classList.toggle('scrolled', window.scrollY > 60);
     }, { passive: true });
 
-    // EXPERIENCE VIEWPOT TRACK SLIDER
     const expTrack = document.getElementById('expTrack');
     const slides = document.querySelectorAll('.exp-slide');
     const dotsContainer = document.getElementById('expDotsContainer');
@@ -693,23 +680,10 @@
     });
 
     const dots = document.querySelectorAll('.exp-dot');
+    function updateExpSlider() { expTrack.style.transform = `translateX(-${activeExpIdx * 100}%)`; dots.forEach((d, idx) => d.classList.toggle('active', idx === activeExpIdx)); }
+    function shiftExp(direction) { activeExpIdx = (activeExpIdx + direction + slides.length) % slides.length; updateExpSlider(); }
+    function jumpToSlide(idx) { activeExpIdx = idx; updateExpSlider(); }
 
-    function updateExpSlider() {
-      expTrack.style.transform = `translateX(-${activeExpIdx * 100}%)`;
-      dots.forEach((d, idx) => d.classList.toggle('active', idx === activeExpIdx));
-    }
-
-    function shiftExp(direction) {
-      activeExpIdx = (activeExpIdx + direction + slides.length) % slides.length;
-      updateExpSlider();
-    }
-
-    function jumpToSlide(idx) {
-      activeExpIdx = idx;
-      updateExpSlider();
-    }
-
-    // MODAL WINDOW CONTROL
     const overlay = document.getElementById('modal-overlay'), modalImg = document.getElementById('modal-img'), modalCap = document.getElementById('modal-caption');
     function openModal(src, cap) { modalImg.src = src; modalCap.textContent = cap; overlay.classList.add('active'); document.body.style.overflow = 'hidden'; }
     function closeModal() { overlay.classList.remove('active'); document.body.style.overflow = ''; setTimeout(() => { modalImg.src = ''; }, 300); }
