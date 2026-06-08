@@ -238,6 +238,185 @@
       .contact-links { align-items: center; }
       .contact-actions { border-left: none; padding-left: 0; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 2rem; }
     }
+    /* ═══════════════════════════════════════════════════════════════
+   MOBILE RESPONSIVE PATCH — À coller juste avant </style>
+   Ne modifie aucune règle existante, uniquement des overrides.
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ── TABLETTE LARGE (≤ 1100px) ────────────────────────────────── */
+@media (max-width: 1100px) {
+  #hero {
+    grid-template-columns: 1fr 340px;
+    gap: 3rem;
+  }
+  .grand-card {
+    grid-template-columns: 1fr 1fr;
+    padding: 2.5rem 3rem;
+    gap: 2.5rem;
+  }
+}
+
+/* ── TABLETTE (≤ 960px) ────────────────────────────────────────── */
+@media (max-width: 960px) {
+  /* NAV */
+  nav { padding: 1rem 1.5rem; }
+  nav.scrolled { padding: .8rem 1.5rem; }
+  .nav-links { display: none; }
+
+  /* HERO — colonne unique centré */
+  #hero {
+    grid-template-columns: 1fr;
+    text-align: center;
+    padding-top: 5.5rem;
+    gap: 2.5rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+  .hero-eyebrow,
+  .hero-ctas { justify-content: center; }
+  .hero-tagline { margin-left: auto; margin-right: auto; }
+  .hero-visual { margin-top: 1rem; }
+  .profile-frame { width: 260px; height: 330px; }
+  .profile-badge { left: -12px; bottom: -12px; }
+
+  /* SECTIONS */
+  section { padding: 4rem 1.5rem; }
+
+  /* COMPÉTENCES */
+  .matrix-grid { grid-template-columns: 1fr; }
+
+  /* STATS — 2 colonnes sur tablette */
+  .stats-bar { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+
+  /* CAROUSEL — carte pleine largeur, image en dessous */
+  .grand-card {
+    grid-template-columns: 1fr;
+    padding: 2rem 1.8rem 1.5rem;
+    gap: 1.5rem;
+  }
+  .grand-card-media {
+    height: 220px;
+    padding: 1rem;
+  }
+  .grand-card-media img {
+    max-height: 190px;
+  }
+
+  /* FLÈCHES carousel — plus larges, zone de tap confortable */
+  .exp-nav-ui {
+    margin-top: 1.5rem;
+    padding: 0 0.5rem;
+  }
+  .exp-arrow-btn {
+    width: 52px;
+    height: 52px;
+    font-size: 1.3rem;
+    border-width: 2px;
+  }
+
+  /* CONTACT */
+  .contact-card {
+    grid-template-columns: 1fr;
+    padding: 2rem 1.5rem;
+    text-align: center;
+    gap: 2rem;
+  }
+  .contact-links { align-items: center; }
+  .contact-item { justify-content: center; }
+  .contact-actions {
+    border-left: none;
+    padding-left: 0;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    padding-top: 2rem;
+  }
+
+  /* FOOTER */
+  #contact { padding: 4rem 1.5rem 3rem; }
+}
+
+/* ── MOBILE (≤ 600px) ─────────────────────────────────────────── */
+@media (max-width: 600px) {
+  /* Typographie H1 */
+  h1 { font-size: clamp(2.6rem, 10vw, 3.6rem); }
+  h2.section-title { font-size: clamp(1.8rem, 7vw, 2.4rem); margin-bottom: 2rem; }
+
+  /* NAV logo légèrement réduit */
+  .nav-logo { font-size: 1.15rem; }
+  .lang-switcher { padding: 4px 10px; font-size: .7rem; }
+
+  /* HERO photo */
+  .profile-frame { width: 220px; height: 280px; }
+  .profile-badge { padding: .9rem 1.2rem; left: -8px; bottom: -8px; }
+  .badge-stat { font-size: 2rem; }
+  .badge-label { font-size: .58rem; }
+
+  /* STATS — 2×2 compact */
+  .stats-bar {
+    grid-template-columns: repeat(2, 1fr);
+    gap: .8rem;
+    padding: 2rem 0 1rem 0;
+  }
+  .stat-item { padding: 1.4rem .8rem; }
+  .stat-number { font-size: 2.2rem; }
+  .stat-label { font-size: .58rem; letter-spacing: .1em; }
+
+  /* CAROUSEL carte — padding réduit */
+  .grand-card { padding: 1.6rem 1.4rem 1.2rem; }
+  .grand-card-info h3 { font-size: 1.6rem; }
+  .grand-card-info p { font-size: .83rem; }
+  .grand-card-media { height: 180px; }
+  .grand-card-media img { max-height: 155px; }
+
+  /* FLÈCHES carousel — tap-friendly 48px minimum */
+  .exp-arrow-btn {
+    width: 48px;
+    height: 48px;
+    font-size: 1.1rem;
+  }
+  .exp-nav-ui { padding: 0; }
+  .exp-dots { gap: 8px; }
+  .exp-dot { width: 7px; height: 7px; }
+  .exp-dot.active { width: 22px; }
+
+  /* LOGO dans les cartes */
+  .exp-card-logo-container { height: 44px; padding: 6px 10px; }
+  .exp-card-logo { max-height: 28px; }
+
+  /* TIMELINE — réduire indent sur mobile */
+  .timeline { padding-left: 2rem; }
+  .timeline-dot { left: -2rem; }
+  .timeline-item p { font-size: .83rem; }
+
+  /* BOUTONS CTA hero */
+  .hero-ctas { flex-direction: column; align-items: center; gap: .9rem; }
+  .btn-primary, .btn-secondary { width: 100%; max-width: 280px; justify-content: center; }
+
+  /* MARQUEE — cartes légèrement plus petites */
+  .marquee-card { width: 240px; }
+
+  /* GRILLE livrables — 2 colonnes */
+  .static-grid-container { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+
+  /* CONTACT */
+  .contact-info h2 { font-size: 2.1rem; }
+  .contact-item { font-size: .85rem; }
+  .contact-item svg { width: 18px; height: 18px; }
+  .qr-box img { width: 110px; height: 110px; }
+
+  /* COPYRIGHT */
+  .copyright { flex-direction: column; gap: .4rem; text-align: center; }
+}
+
+/* ── TRÈS PETIT MOBILE (≤ 380px — iPhone SE, etc.) ───────────── */
+@media (max-width: 380px) {
+  section { padding: 3.5rem 1.2rem; }
+  .profile-frame { width: 195px; height: 250px; }
+  h1 { font-size: 2.4rem; }
+  .grand-card-media { height: 155px; }
+  .grand-card-media img { max-height: 130px; }
+  .hero-tagline { font-size: .85rem; }
+  .stat-number { font-size: 2rem; }
+}
   </style>
 </head>
 <body class="lang-fr">
