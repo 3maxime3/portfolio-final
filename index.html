@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-
+ 
   <style>
     /* ─── RESET & TOKENS ─────────────────────────────────────────── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -27,18 +27,18 @@
     }
     html { scroll-behavior: smooth; font-size: 16px; }
     body { background: var(--night); color: var(--sand-lt); font-family: var(--font-sans); font-weight: 300; line-height: 1.7; overflow-x: hidden; cursor: none; }
-
+ 
     /* ─── BILINGUAL SYSTEM ───────────────────────────────────────── */
     body.lang-en .fr { display: none !important; }
     body.lang-fr .en { display: none !important; }
-
+ 
     /* ─── CURSOR & SCROLL ────────────────────────────────────────── */
     #cursor-dot, #cursor-ring { position: fixed; border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%, -50%); transition: opacity .3s; }
     #cursor-dot { width: 6px; height: 6px; background: var(--copper); transition: transform .1s var(--ease-expo); }
     #cursor-ring { width: 32px; height: 32px; border: 1px solid var(--copper); opacity: .5; transition: transform .35s var(--ease-expo), width .25s, height .25s, opacity .3s; }
     body:has(a:hover) #cursor-ring, body:has(button:hover) #cursor-ring { width: 48px; height: 48px; opacity: .9; }
     #scroll-progress { position: fixed; top: 0; left: 0; height: 2px; background: linear-gradient(90deg, var(--copper), var(--copper-lt)); z-index: 1000; width: 0%; transition: width .1s linear; }
-
+ 
     /* ─── NAVIGATION ─────────────────────────────────────────────── */
     nav { position: fixed; top: 0; left: 0; right: 0; z-index: 900; display: flex; align-items: center; justify-content: space-between; padding: 1.4rem 4rem; transition: background .4s, padding .4s; }
     nav.scrolled { background: rgba(11,17,32,.95); backdrop-filter: blur(18px); padding: 1rem 4rem; border-bottom: 1px solid rgba(184,115,51,.15); }
@@ -55,7 +55,7 @@
     .lang-btn { background: transparent; border: none; color: var(--muted); cursor: none; transition: color 0.3s; font-weight: 600; display: flex; align-items: center; gap: 4px; }
     .lang-btn.active { color: var(--white); }
     .lang-btn:hover { color: var(--copper-lt); }
-
+ 
     /* ─── SECTIONS LAYOUT ────────────────────────────────────────── */
     section { position: relative; z-index: 1; padding: 6rem 4rem; max-width: 1280px; margin: 0 auto; }
     .section-label { font-size: .65rem; letter-spacing: .22em; text-transform: uppercase; color: var(--copper); display: flex; align-items: center; gap: .8rem; margin-bottom: 1rem; font-weight: 600; }
@@ -65,20 +65,20 @@
     .reveal { opacity: 0; transform: translateY(30px); transition: opacity .9s var(--ease-expo), transform .9s var(--ease-expo); }
     .reveal.visible { opacity: 1; transform: translateY(0); }
     .reveal-delay-1 { transition-delay: .1s; } .reveal-delay-2 { transition-delay: .2s; }
-
+ 
     /* ─── HIGHLIGHT KEYWORDS ─────────────────────────────────────── */
     .highlight-keyword { color: var(--copper-lt); font-weight: 500; display: inline-block; transition: transform 0.3s var(--ease-expo), color 0.3s; position: relative; }
     .highlight-keyword::after { content:''; position: absolute; bottom: 0; left: 0; width: 100%; height: 1px; background: rgba(184,115,51,0.3); transition: background 0.3s; }
     .highlight-keyword:hover { transform: scale(1.03); color: var(--white); }
     .highlight-keyword:hover::after { background: var(--copper-lt); }
-
+ 
     /* ─── BUTTONS ────────────────────────────────────────────────── */
     .btn-primary, .btn-secondary { font-family: var(--font-sans); font-size: .72rem; letter-spacing: .14em; text-transform: uppercase; text-decoration: none; padding: .9rem 2.2rem; border-radius: 4px; cursor: none; display: inline-flex; align-items: center; justify-content: center; gap: .6rem; transition: all .35s var(--ease-expo); }
     .btn-primary { background: var(--copper); color: var(--night); border: 1px solid var(--copper); font-weight: 600; }
     .btn-primary:hover { background: var(--copper-lt); border-color: var(--copper-lt); transform: translateY(-3px); box-shadow: 0 10px 20px rgba(184,115,51,0.2); }
     .btn-secondary { background: transparent; color: var(--sand); border: 1px solid rgba(201,185,154,.3); }
     .btn-secondary:hover { border-color: var(--copper); color: var(--white); transform: translateY(-3px); }
-
+ 
     /* ─── HERO ───────────────────────────────────────────────────── */
     #hero { min-height: 100vh; display: grid; grid-template-columns: 1fr 400px; align-items: center; gap: 4rem; padding-top: 8rem; }
     .hero-eyebrow { font-size: .68rem; letter-spacing: .26em; text-transform: uppercase; color: var(--copper); margin-bottom: 1.6rem; display: flex; align-items: center; gap: 1rem; }
@@ -95,7 +95,7 @@
     .profile-badge { position: absolute; bottom: -24px; left: -24px; background: var(--navy-mid); border: 2px solid var(--copper); padding: 1.3rem 1.8rem; border-radius: 6px; backdrop-filter: blur(12px); z-index: 10; transform: translateZ(25px); box-shadow: 0 20px 45px rgba(0,0,0,0.7), inset 0 1px 0 rgba(255,255,255,0.15); }
     .badge-stat { font-family: var(--font-serif); font-size: 2.4rem; font-weight: 700; color: var(--copper-lt); line-height: 1; text-shadow: 0 2px 5px rgba(0,0,0,0.5); }
     .badge-label { font-size: .65rem; letter-spacing: .14em; text-transform: uppercase; color: var(--white); margin-top: .4rem; font-weight: 700; }
-
+ 
     /* ─── QUI JE SUIS & ENCADRE BILAN ───────────────────────────── */
     .about-container { display: flex; flex-direction: column; gap: 2.5rem; margin-top: 1rem; max-width: 900px; }
     .about-text p { font-size: 1.05rem; line-height: 1.8; color: var(--sand-lt); margin-bottom: 1.5rem; }
@@ -106,7 +106,7 @@
     .bilan-encadre h3 { font-family: var(--font-serif); font-size: 1.8rem; color: var(--copper-lt); margin-bottom: 1.5rem; }
     .bilan-encadre p { font-size: 0.95rem; line-height: 1.8; color: var(--sand-lt); margin-bottom: 1rem; text-align: justify; }
     .bilan-encadre b { color: var(--white); font-weight: 500; }
-
+ 
     /* ─── COMPETENCES ANIMÉES ────────────────────────────────────── */
     .matrix-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; margin-top: 2rem; }
     .matrix-box { background: rgba(22,37,64,0.2); border: 1px solid rgba(255,255,255,0.03); padding: 2.5rem; border-radius: 6px; transition: transform 0.4s var(--ease-expo), box-shadow 0.4s, border-color 0.4s; }
@@ -118,15 +118,65 @@
     .tag-container { display: flex; flex-wrap: wrap; gap: .6rem; }
     .tag-skill { font-size: .75rem; background: var(--navy-mid); border: 1px solid rgba(255,255,255,0.05); color: var(--sand-lt); padding: .5rem 1rem; border-radius: 4px; font-weight: 500; transition: border-color 0.3s, color 0.3s; }
     .tag-skill:hover { border-color: var(--copper-lt); color: var(--white); }
-
+ 
+    /* ─── EXPERTISES DETAILED GRID (MISSION 1) ───────────────────── */
+    .expertises-detailed-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.8rem;
+      margin-top: 3rem;
+    }
+    .expertise-card {
+      background: rgba(15, 30, 53, 0.5);
+      border: 1px solid rgba(184, 115, 51, 0.12);
+      border-radius: 8px;
+      padding: 2rem;
+      transition: transform 0.4s var(--ease-expo), box-shadow 0.4s, border-color 0.4s;
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+    .expertise-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+      border-color: rgba(184, 115, 51, 0.35);
+    }
+    /* Span la 5ème carte pour équilibrer la grille (3+2) */
+    .expertise-card:nth-child(4) { grid-column: 1 / 2; }
+    .expertise-card:nth-child(5) { grid-column: 2 / 3; }
+    .expertise-card-header {
+      display: flex;
+      align-items: center;
+      gap: .9rem;
+    }
+    .expertise-card-icon {
+      font-size: 1.4rem;
+      line-height: 1;
+      flex-shrink: 0;
+    }
+    .expertise-card h4 {
+      font-family: var(--font-serif);
+      font-size: 1.35rem;
+      color: var(--white);
+      font-weight: 400;
+      line-height: 1.2;
+    }
+    .expertise-card-body {
+      font-size: 0.86rem;
+      color: var(--sand-lt);
+      opacity: 0.9;
+      line-height: 1.75;
+      flex-grow: 1;
+    }
+ 
     /* ─── STATS BAR TRANSITION ZONE ──────────────────────────────── */
     .stats-bar { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; padding: 4rem 0 2rem 0; text-align: center; }
     .stat-item { background: rgba(255,255,255,0.02); padding: 2rem 1rem; border-radius: 6px; border: 1px solid rgba(255,255,255,0.03); transition: transform 0.4s var(--ease-expo), border-color 0.4s; }
     .stat-item:hover { transform: translateY(-8px); border-color: rgba(184,115,51,0.2); }
     .stat-number { font-family: var(--font-serif); font-size: 3rem; color: var(--copper); font-weight: 600; line-height: 1; margin-bottom: .5rem; }
     .stat-label { font-size: .65rem; letter-spacing: .15em; text-transform: uppercase; color: var(--muted); font-weight: 500; line-height: 1.4; }
-
-    /* ─── CAROUSEL EXPERIENCES PROPORTIONS PARFAITES + 3D TILT ──── */
+ 
+    /* ─── CAROUSEL EXPERIENCES ───────────────────────────────────── */
     .carousel-section-container { position: relative; width: 100%; margin-top: 2rem; }
     .exp-viewport { width: 100%; overflow: hidden; position: relative; padding: 1rem 0 3rem 0; }
     .exp-track { display: flex; transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1); will-change: transform; }
@@ -151,7 +201,7 @@
     
     .tc-badges { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 1.8rem; }
     .tc-badges span { font-size: 0.6rem; letter-spacing: 0.05em; text-transform: uppercase; background: rgba(184,115,51,0.15); color: var(--copper-lt); padding: 4px 10px; border-radius: 20px; border: 1px solid rgba(184,115,51,0.3); font-weight: 600; }
-
+ 
     .grand-card-media { display: flex; justify-content: center; align-items: center; height: 100%; transform: translateZ(30px); background: rgba(255,255,255,0.02); border-radius: 8px; padding: 1.5rem; border: 1px solid rgba(255,255,255,0.03); }
     .grand-card-media img { max-width: 100%; height: auto; max-height: 300px; object-fit: contain; filter: drop-shadow(0 15px 30px rgba(0,0,0,0.4)); }
     
@@ -161,11 +211,11 @@
     .exp-dot.active { background: var(--copper); width: 28px; border-radius: 4px; }
     .exp-arrow-btn { background: transparent; border: 2px solid rgba(201,185,154,0.3); color: var(--sand); width: 56px; height: 56px; border-radius: 50%; font-size: 1.4rem; display: flex; align-items: center; justify-content: center; cursor: none; transition: all 0.3s; }
     .exp-arrow-btn:hover { background: var(--copper); color: var(--night); border-color: var(--copper); transform: scale(1.05); }
-
+ 
     .livrable-btn { font-family: var(--font-sans); font-size: .62rem; letter-spacing: .1em; text-transform: uppercase; color: var(--white); background: transparent; border: 1px solid rgba(201,185,154,.25); padding: .6rem 1rem; border-radius: 4px; cursor: none; display: inline-flex; align-items: center; transition: all 0.3s; margin-right: 5px; margin-bottom: 5px; }
     .livrable-btn:hover { color: var(--night); background: var(--copper); border-color: var(--copper); font-weight: 600; }
-
-    /* ─── TIMELINE DETAILED PURSUIT ──────────────────────────────── */
+ 
+    /* ─── TIMELINE ───────────────────────────────────────────────── */
     .timeline { position: relative; padding-left: 3rem; max-width: 900px; margin-top: 2rem; }
     .timeline::before { content: ''; position: absolute; left: 7px; top: 0; bottom: 0; width: 1px; background: linear-gradient(180deg, var(--copper) 0%, rgba(184,115,51,.1) 100%); }
     .timeline-item { position: relative; padding-bottom: 4rem; }
@@ -176,8 +226,8 @@
     .timeline-item h3 em { font-style: italic; color: var(--copper-lt); }
     .timeline-period { font-size: .75rem; color: var(--muted); letter-spacing: .05em; margin-bottom: 1rem; }
     .timeline-item p { font-size: .88rem; color: var(--sand-lt); opacity: 0.9; max-width: 640px; text-align: justify; }
-
-    /* ─── LIVRABLES DUAL MODE (MARQUEE & GRID) ───────────────────── */
+ 
+    /* ─── LIVRABLES ──────────────────────────────────────────────── */
     #livrables { border-top: 1px solid rgba(201,185,154,.07); overflow: hidden; padding-bottom: 4rem; }
     .marquee-container { position: relative; width: 100%; overflow: hidden; margin-top: 3rem; padding: 1rem 0; mask-image: linear-gradient(to right, transparent, #000 10%, #000 90%, transparent); -webkit-mask-image: linear-gradient(to right, transparent, #000 10%, #000 90%, transparent); }
     .marquee-track { display: flex; gap: 2rem; width: max-content; animation: infiniteMarquee 30s linear infinite; }
@@ -196,10 +246,10 @@
     .marquee-card:hover .archive-overlay, .grid-card:hover .archive-overlay { opacity: 1; }
     .archive-title { font-family: var(--font-serif); font-size: 1.2rem; color: var(--white); margin-bottom: .2rem; }
     .archive-sub { font-size: .65rem; letter-spacing: .12em; text-transform: uppercase; color: var(--copper); }
-
+ 
     .toggle-view-container { display: flex; justify-content: center; margin-top: 2rem; }
-
-    /* ─── CONTACT SECTION & FOOTER (CTA ENGAGEANT) ──────────────── */
+ 
+    /* ─── CONTACT & FOOTER ───────────────────────────────────────── */
     #contact { border-top: 1px solid rgba(201,185,154,.08); padding: 6rem 4rem 4rem 4rem; max-width: 1280px; margin: 0 auto; }
     .contact-card { background: rgba(22,37,64,0.4); border: 1px solid rgba(201,185,154,0.1); border-radius: 8px; padding: 4rem; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
     .contact-info h2 { font-family: var(--font-serif); font-size: 2.8rem; color: var(--white); margin-bottom: 1rem; }
@@ -213,8 +263,8 @@
     .qr-box img { width: 140px; height: 140px; border-radius: 6px; padding: 10px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); margin-bottom: 0.5rem; }
     .qr-box span { display: block; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); }
     .copyright { font-size: .68rem; color: rgba(122,138,154,.4); padding-top: 3rem; margin-top: 3rem; border-top: 1px solid rgba(201,185,154,.06); display: flex; justify-content: space-between; letter-spacing: 0.05em; }
-
-    /* ─── LIGHTBOX MODAL CONTAINER ─────────────────────────────── */
+ 
+    /* ─── LIGHTBOX ───────────────────────────────────────────────── */
     #modal-overlay { position: fixed; inset: 0; z-index: 2000; background: rgba(8,13,26,.94); backdrop-filter: blur(12px); display: none; align-items: center; justify-content: center; padding: 2rem; }
     #modal-overlay.active { display: flex; }
     #modal-box { position: relative; max-width: 900px; width: 100%; max-height: 85vh; background: var(--navy-mid); border: 1px solid rgba(201,185,154,.12); border-radius: 6px; overflow: hidden; }
@@ -222,28 +272,158 @@
     #modal-caption { padding: 1.2rem; font-size: .8rem; color: var(--sand-lt); background: var(--navy); font-weight: 500; }
     #modal-close { position: absolute; top: 1rem; right: 1rem; background: rgba(11,17,32,.8); color: var(--white); width: 38px; height: 38px; border-radius: 50%; border: none; cursor: none; font-size: 1rem; display: flex; align-items: center; justify-content: center; transition: background 0.3s; }
     #modal-close:hover { background: var(--copper); color: var(--night); }
-
-    /* ─── RESPONSIVE MOBILE & TABLET ─────────────────────────────── */
+ 
+    /* ══════════════════════════════════════════════════════════════ */
+    /* ─── RESPONSIVE MOBILE — TOUTES LES CORRECTIONS ICI ────────── */
+    /* ══════════════════════════════════════════════════════════════ */
     @media (max-width: 960px) {
-      #hero { grid-template-columns: 1fr; text-align: center; padding-top: 6rem; }
+      /* Navigation */
+      nav { padding: 1rem 1.5rem; }
+      nav.scrolled { padding: .8rem 1.5rem; }
+      .nav-links { display: none; }
+ 
+      /* Hero */
+      #hero {
+        grid-template-columns: 1fr;
+        text-align: center;
+        padding-top: 6rem;
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+        gap: 2rem;
+      }
       .hero-eyebrow, .hero-ctas { justify-content: center; }
-      .hero-visual { margin-top: 3rem; }
-      .profile-frame { width: 280px; height: 360px; }
-      .matrix-grid, .stats-bar { grid-template-columns: 1fr; gap: 1.5rem; }
-      .grand-card { grid-template-columns: 1fr; padding: 2rem; gap: 2rem; }
-      .grand-card-media { height: auto; padding: 1rem; }
-      .grand-card-media img { max-height: 200px; }
-      nav { padding: 1rem 1.5rem; } .nav-links { display: none; }
-      .contact-card { grid-template-columns: 1fr; padding: 2rem; text-align: center; }
+      .hero-visual { margin-top: 2rem; }
+      .profile-frame { width: 260px; height: 340px; }
+      .hero-tagline { font-size: .88rem; }
+ 
+      /* Sections — padding global réduit */
+      section {
+        padding: 4rem 1.5rem;
+      }
+      #contact {
+        padding: 4rem 1.5rem 3rem 1.5rem;
+      }
+ 
+      /* About / Bilan */
+      .bilan-encadre {
+        padding: 2rem 1.5rem;
+      }
+      .bilan-encadre p { font-size: .88rem; }
+ 
+      /* Grilles compétences */
+      .matrix-grid {
+        grid-template-columns: 1fr;
+        gap: 1.2rem;
+      }
+      .matrix-box { padding: 2rem 1.5rem; }
+ 
+      /* Expertises detailed grid — Mission 1 */
+      .expertises-detailed-grid {
+        grid-template-columns: 1fr;
+        gap: 1.2rem;
+        margin-top: 2rem;
+      }
+      .expertise-card:nth-child(4),
+      .expertise-card:nth-child(5) {
+        grid-column: auto;
+      }
+      .expertise-card { padding: 1.5rem; }
+ 
+      /* Stats bar */
+      .stats-bar {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+        padding: 2rem 0 1rem 0;
+      }
+ 
+      /* Carousel */
+      .exp-slide { padding: 0 4px; }
+      .grand-card {
+        grid-template-columns: 1fr;
+        padding: 1.5rem;
+        gap: 1.5rem;
+        transform-style: flat; /* désactive le 3D tilt sur mobile pour éviter les bugs layout */
+      }
+      .grand-card-info { transform: none; }
+      .grand-card-media {
+        height: auto;
+        padding: 1rem;
+        transform: none;
+      }
+      .grand-card-media img { max-height: 180px; }
+      .exp-arrow-btn {
+        width: 44px;
+        height: 44px;
+        font-size: 1.1rem;
+        /* Garantit que les flèches restent dans la zone visible */
+        flex-shrink: 0;
+      }
+      .exp-nav-ui {
+        padding: 0 4px;
+      }
+ 
+      /* Contact card */
+      .contact-card {
+        grid-template-columns: 1fr;
+        padding: 2rem 1.5rem;
+        gap: 2rem;
+        text-align: center;
+      }
+      .contact-info h2 { font-size: 2rem; }
+      .contact-info p { max-width: 100%; font-size: .88rem; }
       .contact-links { align-items: center; }
-      .contact-actions { border-left: none; padding-left: 0; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 2rem; }
+      .contact-item { font-size: .88rem; }
+      .contact-actions {
+        border-left: none;
+        padding-left: 0;
+        border-top: 1px solid rgba(255,255,255,0.05);
+        padding-top: 2rem;
+      }
+ 
+      /* Copyright */
+      .copyright {
+        flex-direction: column;
+        gap: .5rem;
+        text-align: center;
+      }
+    }
+ 
+    /* ─── RESPONSIVE PETITS MOBILES (≤ 480px) ───────────────────── */
+    @media (max-width: 480px) {
+      section { padding: 3rem 1.2rem; }
+      #contact { padding: 3rem 1.2rem 2rem 1.2rem; }
+ 
+      h2.section-title { font-size: clamp(1.8rem, 7vw, 2.4rem); margin-bottom: 2rem; }
+ 
+      .bilan-encadre { padding: 1.5rem 1.2rem; }
+      .bilan-encadre h3 { font-size: 1.4rem; }
+ 
+      .stats-bar { grid-template-columns: 1fr 1fr; gap: .8rem; }
+      .stat-number { font-size: 2.2rem; }
+      .stat-label { font-size: .6rem; }
+ 
+      .grand-card { padding: 1.2rem; gap: 1.2rem; }
+      .grand-card-info h3 { font-size: 1.6rem; }
+      .grand-card-info p { font-size: .84rem; }
+ 
+      .expertise-card { padding: 1.2rem; }
+      .expertise-card h4 { font-size: 1.15rem; }
+      .expertise-card-body { font-size: .82rem; }
+ 
+      .contact-card { padding: 1.5rem 1.2rem; }
+      .contact-info h2 { font-size: 1.7rem; }
+ 
+      .lang-switcher { font-size: .7rem; padding: 5px 8px; gap: 8px; }
+ 
+      /* Assure que le texte email ne déborde pas */
+      .contact-item { font-size: .75rem; word-break: break-all; }
     }
   </style>
 </head>
 <body class="lang-fr">
-
+ 
   <div id="cursor-dot"></div><div id="cursor-ring"></div><div id="scroll-progress"></div>
-
+ 
   <nav id="main-nav">
     <a href="#hero" class="nav-logo">MM<span>.</span></a>
     <div class="nav-right">
@@ -262,7 +442,7 @@
       </div>
     </div>
   </nav>
-
+ 
   <section id="hero">
     <div class="hero-content">
       <div class="hero-eyebrow reveal"><span class="fr">Portfolio</span><span class="en">Portfolio</span></div>
@@ -292,7 +472,7 @@
       </div>
     </div>
   </section>
-
+ 
   <section id="about" style="padding-top: 2rem; padding-bottom: 2rem;">
     <div class="section-label reveal"><span class="fr">Bilan & Profil</span><span class="en">Profile & Overview</span></div>
     <h2 class="section-title reveal reveal-delay-1">
@@ -304,11 +484,11 @@
       <div class="about-text">
         <p class="fr">Avant mon entrée à Tech de Co, mon profil s'est d'abord forgé sur le terrain. <b>Plus de 10 ans de basket en compétition</b> m'ont inculqué l'esprit d'équipe, la communication, et le <b>dépassement de soi</b>. Je pratique également le golf avec mon père, une véritable école de persévérance et de précision.</p>
         <p class="en">Before joining Tech de Co, my character was forged on the court. <b>Over 10 years of competitive basketball</b> taught me team spirit, communication, and <b>self-improvement</b>. I also play golf, a true school of perseverance and precision.</p>
-
+ 
         <p class="fr">Passionné par l'univers du prêt-à-porter, du sport et de la parfumerie confidentielle, je suis de nature curieuse et <b>orienté vers l'action</b>. De la création de ma marque de vêtements <em>Saphir</em> à mes missions actuelles en entreprise, j'ai toujours eu à cœur de prendre des initiatives. Enfin, j'accorde une grande importance à ma vie sociale pour maintenir un <b>équilibre sain</b> avec la vie professionnelle.</p>
         <p class="en">Passionate about fashion, sports, and niche perfumery, I am naturally curious and <b>action-oriented</b>. From creating my clothing brand <em>Saphir</em> to my corporate missions, I love taking initiatives. Finally, I maintain an active social life to ensure a <b>healthy balance</b> with my professional ambitions.</p>
       </div>
-
+ 
       <div class="bilan-encadre reveal">
         <h3 class="fr">Bilan BUT TC — 3 ans</h3>
         <h3 class="en">3-Year Degree Overview</h3>
@@ -317,7 +497,7 @@
       </div>
     </div>
   </section>
-
+ 
   <section id="competences" style="padding-top: 2rem; padding-bottom: 2rem;">
     <div class="section-label reveal"><span class="fr">Compétences Éprouvées</span><span class="en">Skills & Abilities</span></div>
     <h2 class="section-title reveal reveal-delay-1">
@@ -336,7 +516,7 @@
           <li><span>🎯</span> <div class="fr"><b>Esprit d'équipe :</b> Collaboration constructive et contribution à la dynamique collective.</div><div class="en"><b>Team player:</b> Constructive collaboration and group dynamics.</div></li>
         </ul>
       </div>
-
+ 
       <div class="matrix-box reveal reveal-delay-1">
         <h3 class="fr">Langues & Vision Commerciale</h3><h3 class="en">Languages & Commerce</h3>
         <ul class="soft-list" style="margin-bottom: 2rem;">
@@ -352,7 +532,86 @@
         </div>
       </div>
     </div>
-
+ 
+    <div class="expertises-detailed-grid">
+ 
+      <div class="expertise-card reveal">
+        <div class="expertise-card-header">
+          <div class="expertise-card-icon">🌍</div>
+          <h4><span class="fr">International & Adaptabilité</span><span class="en">International & Adaptability</span></h4>
+        </div>
+        <p class="expertise-card-body fr">Expatriation académique d'un an validée à Madrid (CUNEF Universidad) pour l'année prochaine, stage réalisé à Valence (Espagne) et TOEIC 810. Ce parcours prouve une forte capacité d'adaptation multiculturelle et linguistique dans des environnements exigeants.</p>
+        <p class="expertise-card-body en">One-year academic exchange approved at Madrid (CUNEF Universidad) for next year, internship completed in Valencia (Spain), and TOEIC 810. This path demonstrates a strong capacity for multicultural and linguistic adaptation in demanding environments.</p>
+        <div class="tag-container">
+          <span class="tag-skill">TOEIC 810</span>
+          <span class="tag-skill">Espagnol B2</span>
+          <span class="tag-skill">Mobilité Madrid</span>
+          <span class="tag-skill">Adaptation Culturelle</span>
+        </div>
+      </div>
+ 
+      <div class="expertise-card reveal reveal-delay-1">
+        <div class="expertise-card-header">
+          <div class="expertise-card-icon">📋</div>
+          <h4><span class="fr">Management de Projet</span><span class="en">Project Management</span></h4>
+        </div>
+        <p class="expertise-card-body fr">Gestion de projets stratégiques complexes en totale autonomie (migration e-commerce Shopify de +600 références pour la Parfumerie, co-direction de l'événement TC Talent), coordination de prestataires et respect rigoureux des deadlines (Mémoire BUT).</p>
+        <p class="expertise-card-body en">Management of complex strategic projects in total autonomy (full Shopify e-commerce migration of 600+ items for La Parfumerie, co-direction of the TC Talent corporate event), vendor coordination, and strict deadline compliance (BUT Thesis).</p>
+        <div class="tag-container">
+          <span class="tag-skill">Gestion de projet</span>
+          <span class="tag-skill">Négociation Prestataires</span>
+          <span class="tag-skill">Respect des Deadlines</span>
+          <span class="tag-skill">Autonomie</span>
+        </div>
+      </div>
+ 
+      <div class="expertise-card reveal reveal-delay-2">
+        <div class="expertise-card-header">
+          <div class="expertise-card-icon">📊</div>
+          <h4><span class="fr">Analyse & Stratégie Digitale</span><span class="en">Digital Strategy & Analysis</span></h4>
+        </div>
+        <p class="expertise-card-body fr">Réalisation de benchmarks concurrentiels approfondis (Nose, Jovoy) pour mon mémoire, audits sémantiques SEO et études qualitatives clients. Capacité à analyser le comportement utilisateur et à transformer la data en décisions commerciales.</p>
+        <p class="expertise-card-body en">Execution of in-depth competitive benchmarks (Nose, Jovoy) for my thesis, semantic SEO audits, and qualitative customer studies. Ability to analyze user behavior and transform data into actionable commercial decisions.</p>
+        <div class="tag-container">
+          <span class="tag-skill">Benchmark Concurrentiel</span>
+          <span class="tag-skill">Google Analytics</span>
+          <span class="tag-skill">Audit SEO</span>
+          <span class="tag-skill">Data-driven</span>
+        </div>
+      </div>
+ 
+      <div class="expertise-card reveal">
+        <div class="expertise-card-header">
+          <div class="expertise-card-icon">✍️</div>
+          <h4><span class="fr">Création de Contenu & Brand Content</span><span class="en">Content Creation & Brand Content</span></h4>
+        </div>
+        <p class="expertise-card-body fr">Conception de contenus pour les réseaux sociaux en contexte de forte affluence (La Parfumerie Bordelaise, Mo'Bike Valence), rédaction de fiches produits haut de gamme et d'articles de blog experts. Maîtrise des codes visuels du marketing premium.</p>
+        <p class="expertise-card-body en">Content creation for social media in high-traffic contexts (La Parfumerie Bordelaise, Mo'Bike Valencia), high-end product copywriting, and expert blog posts. Mastery of premium marketing visual codes.</p>
+        <div class="tag-container">
+          <span class="tag-skill">Canva Pro</span>
+          <span class="tag-skill">Brand Content</span>
+          <span class="tag-skill">Copywriting SEO</span>
+          <span class="tag-skill">Instagram Growth</span>
+        </div>
+      </div>
+ 
+      <div class="expertise-card reveal reveal-delay-1">
+        <div class="expertise-card-header">
+          <div class="expertise-card-icon">💎</div>
+          <h4><span class="fr">Esprit Entrepreneurial</span><span class="en">Entrepreneurial Mindset</span></h4>
+        </div>
+        <p class="expertise-card-body fr">Co-fondateur de la marque de prêt-à-porter Saphir (gestion du cahier des charges, sourcing fournisseurs et négociation B2B). Ambition forte de piloter, scaler et développer de nouveaux projets digitaux et innovants à moyen terme.</p>
+        <p class="expertise-card-body en">Co-founder of the Saphir ready-to-wear clothing brand (specs management, supplier sourcing, and B2B negotiation). Strong ambition to lead, scale, and develop new digital and innovative projects in the medium term.</p>
+        <div class="tag-container">
+          <span class="tag-skill">Saphir Brand</span>
+          <span class="tag-skill">Sourcing Fournisseurs</span>
+          <span class="tag-skill">Négociation B2B</span>
+          <span class="tag-skill">Vision Produit</span>
+        </div>
+      </div>
+ 
+    </div>
+ 
     <div class="stats-bar reveal" style="margin-top: 4rem;">
       <div class="stat-item">
         <div class="stat-number">+600</div>
@@ -372,14 +631,14 @@
       </div>
     </div>
   </section>
-
+ 
   <section id="expertises" style="padding-top:2rem;">
     <div class="section-label reveal"><span class="fr">Dossier Professionnel</span><span class="en">Professional Path</span></div>
     <h2 class="section-title reveal reveal-delay-1">
       <span class="fr">Projets & <em>Réalisations</em></span>
       <span class="en">Projects & <em>Achievements</em></span>
     </h2>
-
+ 
     <div class="carousel-section-container reveal">
       <div class="exp-viewport">
         <div class="exp-track" id="expTrack">
@@ -404,7 +663,7 @@
               <div class="grand-card-media"><img src="assets/lpb-interieur.jpg" alt="La Parfumerie Interieur" /></div>
             </div>
           </div>
-
+ 
           <div class="exp-slide">
             <div class="grand-card">
               <div class="grand-card-info">
@@ -423,7 +682,7 @@
               <div class="grand-card-media"><img src="assets/saphir-produit.jpg" alt="Saphir Produit Studio" /></div>
             </div>
           </div>
-
+ 
           <div class="exp-slide">
             <div class="grand-card">
               <div class="grand-card-info">
@@ -439,7 +698,7 @@
               <div class="grand-card-media"><img src="assets/courir-boutique.jpg" alt="Courir Boutique Devanture" /></div>
             </div>
           </div>
-
+ 
           <div class="exp-slide">
             <div class="grand-card">
               <div class="grand-card-info">
@@ -458,7 +717,7 @@
               <div class="grand-card-media"><img src="assets/valence-instagram.png" alt="Valence Acquisition" /></div>
             </div>
           </div>
-
+ 
           <div class="exp-slide">
             <div class="grand-card">
               <div class="grand-card-info">
@@ -477,7 +736,7 @@
               <div class="grand-card-media"><img src="assets/tc-talent-action.jpg" alt="TC Talent Design Artwork" /></div>
             </div>
           </div>
-
+ 
           <div class="exp-slide">
             <div class="grand-card">
               <div class="grand-card-info">
@@ -493,10 +752,10 @@
               <div class="grand-card-media"><img src="assets/equipesudouest.jpg" alt="Sud Ouest Action Frame" /></div>
             </div>
           </div>
-
+ 
         </div>
       </div>
-
+ 
       <div class="exp-nav-ui">
         <button class="exp-arrow-btn" onclick="shiftExp(-1)">❮</button>
         <div class="exp-dots" id="expDotsContainer"></div>
@@ -504,13 +763,13 @@
       </div>
     </div>
   </section>
-
+ 
   <section id="avenir">
     <div class="section-label reveal"><span class="fr">Vision & Ambition</span><span class="en">Strategic Vision</span></div>
     <h2 class="section-title reveal reveal-delay-1">
       <span class="fr">Poursuite d'études / <em>À venir</em></span><span class="en">Educational <em>Path</em></span>
     </h2>
-
+ 
     <div class="timeline">
       <div class="timeline-item reveal">
         <div class="timeline-dot"></div>
@@ -532,13 +791,13 @@
       </div>
     </div>
   </section>
-
+ 
   <section id="livrables">
     <div class="section-label reveal"><span class="fr">Salle des Archives</span><span class="en">Archive Room</span></div>
     <h2 class="section-title reveal reveal-delay-1">
       <span class="fr">Dossier des <em>Livrables</em></span><span class="en">Project <em>Deliverables</em></span>
     </h2>
-
+ 
     <div id="livrables-marquee" class="marquee-container reveal">
       <div class="marquee-track">
         <div class="marquee-card" onclick="openModal('assets/shopify-accueil.jpg', 'Shopify Vitrine')"><img class="archive-img" src="assets/shopify-accueil.jpg" /><div class="archive-overlay"><div class="archive-title">Shopify Vitrine</div><div class="archive-sub">E-Commerce</div></div></div>
@@ -547,7 +806,6 @@
         <div class="marquee-card" onclick="openModal('assets/madrid-ola-signe.png', 'OLA CUNEF Madrid')"><img class="archive-img" src="assets/madrid-ola-signe.png" /><div class="archive-overlay"><div class="archive-title">OLA CUNEF</div><div class="archive-sub">International</div></div></div>
         <div class="marquee-card" onclick="openModal('assets/tc-talent-action.jpg', 'TC Talent Event')"><img class="archive-img" src="assets/tc-talent-action.jpg" /><div class="archive-overlay"><div class="archive-title">TC Talent Live</div><div class="archive-sub">Gestion de Projet</div></div></div>
         <div class="marquee-card" onclick="openModal('assets/saphir-produit.jpg', 'Shooting Saphir')"><img class="archive-img" src="assets/saphir-produit.jpg" /><div class="archive-overlay"><div class="archive-title">Saphir Fashion</div><div class="archive-sub">Entrepreneuriat</div></div></div>
-        
         <div class="marquee-card" onclick="openModal('assets/shopify-accueil.jpg', 'Shopify Vitrine')"><img class="archive-img" src="assets/shopify-accueil.jpg" /><div class="archive-overlay"><div class="archive-title">Shopify Vitrine</div><div class="archive-sub">E-Commerce</div></div></div>
         <div class="marquee-card" onclick="openModal('assets/diagnostic-interface.jpg', 'Diagnostic UX')"><img class="archive-img" src="assets/diagnostic-interface.jpg" /><div class="archive-overlay"><div class="archive-title">Diagnostic UX</div><div class="archive-sub">Marketing Digital</div></div></div>
         <div class="marquee-card" onclick="openModal('assets/fiche-produit-boutique.jpg', 'Fiche Produit Client')"><img class="archive-img" src="assets/fiche-produit-boutique.jpg" /><div class="archive-overlay"><div class="archive-title">Fiche Produit</div><div class="archive-sub">SEO / Intégration</div></div></div>
@@ -556,7 +814,7 @@
         <div class="marquee-card" onclick="openModal('assets/saphir-produit.jpg', 'Shooting Saphir')"><img class="archive-img" src="assets/saphir-produit.jpg" /><div class="archive-overlay"><div class="archive-title">Saphir Fashion</div><div class="archive-sub">Entrepreneuriat</div></div></div>
       </div>
     </div>
-
+ 
     <div id="livrables-grid" class="static-grid-container">
       <div class="grid-card" onclick="openModal('assets/shopify-accueil.jpg', 'Shopify Vitrine')"><img class="archive-img" src="assets/shopify-accueil.jpg" /><div class="archive-overlay"><div class="archive-title">Shopify Vitrine</div><div class="archive-sub">E-Commerce</div></div></div>
       <div class="grid-card" onclick="openModal('assets/diagnostic-interface.jpg', 'Diagnostic UX')"><img class="archive-img" src="assets/diagnostic-interface.jpg" /><div class="archive-overlay"><div class="archive-title">Diagnostic UX</div><div class="archive-sub">Marketing Digital</div></div></div>
@@ -565,14 +823,14 @@
       <div class="grid-card" onclick="openModal('assets/tc-talent-action.jpg', 'TC Talent Event')"><img class="archive-img" src="assets/tc-talent-action.jpg" /><div class="archive-overlay"><div class="archive-title">TC Talent Live</div><div class="archive-sub">Gestion de Projet</div></div></div>
       <div class="grid-card" onclick="openModal('assets/saphir-produit.jpg', 'Shooting Saphir')"><img class="archive-img" src="assets/saphir-produit.jpg" /><div class="archive-overlay"><div class="archive-title">Saphir Fashion</div><div class="archive-sub">Entrepreneuriat</div></div></div>
     </div>
-
+ 
     <div class="toggle-view-container reveal reveal-delay-2">
       <button id="toggle-livrables-btn" class="btn-secondary" onclick="toggleLivrables()">
         <span class="fr">Explorer toutes les archives</span><span class="en">Explore all archives</span>
       </button>
     </div>
   </section>
-
+ 
   <footer id="contact">
     <div class="section-label reveal" style="margin-bottom: 2rem;"><span class="fr">Contact</span><span class="en">Contact</span></div>
     <div class="contact-card reveal">
@@ -611,7 +869,7 @@
       <span style="color: rgba(184,115,51,.4);">Bordeaux · Madrid</span>
     </div>
   </footer>
-
+ 
   <div id="modal-overlay">
     <div id="modal-box">
       <button id="modal-close" onclick="closeModal()">✕</button>
@@ -619,14 +877,16 @@
       <div id="modal-caption"></div>
     </div>
   </div>
-
+ 
   <script>
+    /* ── LANGUE ────────────────────────────────────────────────── */
     function setLang(lang) {
       document.body.className = 'lang-' + lang;
       document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
       event.target.classList.add('active');
     }
-
+ 
+    /* ── TOGGLE LIVRABLES ──────────────────────────────────────── */
     function toggleLivrables() {
       const marquee = document.getElementById('livrables-marquee');
       const grid = document.getElementById('livrables-grid');
@@ -641,57 +901,85 @@
         btn.innerHTML = '<span class="fr">Fermer la grille</span><span class="en">Close grid</span>';
       }
     }
-
-    document.querySelectorAll('.grand-card').forEach(card => {
-      card.addEventListener('mousemove', e => {
-        const r = card.getBoundingClientRect();
-        const rotX = ((e.clientY - r.top - r.height/2) / (r.height/2)) * -4; 
-        const rotY = ((e.clientX - r.left - r.width/2) / (r.width/2)) * 4;
-        card.style.transform = `perspective(1200px) rotateX(${rotX}deg) rotateY(${rotY}deg) scale3d(1.01,1.01,1.01)`;
+ 
+    /* ── 3D TILT (desktop uniquement) ─────────────────────────── */
+    if (window.innerWidth > 960) {
+      document.querySelectorAll('.grand-card').forEach(card => {
+        card.addEventListener('mousemove', e => {
+          const r = card.getBoundingClientRect();
+          const rotX = ((e.clientY - r.top - r.height/2) / (r.height/2)) * -4; 
+          const rotY = ((e.clientX - r.left - r.width/2) / (r.width/2)) * 4;
+          card.style.transform = `perspective(1200px) rotateX(${rotX}deg) rotateY(${rotY}deg) scale3d(1.01,1.01,1.01)`;
+        });
+        card.addEventListener('mouseleave', () => card.style.transform = 'perspective(1200px) rotateX(0) rotateY(0) scale3d(1,1,1)');
       });
-      card.addEventListener('mouseleave', () => card.style.transform = 'perspective(1200px) rotateX(0) rotateY(0) scale3d(1,1,1)');
-    });
-
-    const dot = document.getElementById('cursor-dot'); const ring = document.getElementById('cursor-ring');
+    }
+ 
+    /* ── CURSOR ────────────────────────────────────────────────── */
+    const dot = document.getElementById('cursor-dot');
+    const ring = document.getElementById('cursor-ring');
     let mx = 0, my = 0, rx = 0, ry = 0;
-    document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; dot.style.left = mx + 'px'; dot.style.top = my + 'px'; });
-    function animRing() { rx += (mx - rx) * .12; ry += (my - ry) * .12; ring.style.left = rx + 'px'; ring.style.top = ry + 'px'; requestAnimationFrame(animRing); }
+    document.addEventListener('mousemove', e => {
+      mx = e.clientX; my = e.clientY;
+      dot.style.left = mx + 'px'; dot.style.top = my + 'px';
+    });
+    function animRing() {
+      rx += (mx - rx) * .12; ry += (my - ry) * .12;
+      ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
+      requestAnimationFrame(animRing);
+    }
     animRing();
-
+ 
+    /* ── REVEAL ON SCROLL ──────────────────────────────────────── */
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
     }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
+ 
+    /* ── SCROLL PROGRESS & NAV ─────────────────────────────────── */
     window.addEventListener('scroll', () => {
       document.getElementById('scroll-progress').style.width = (window.scrollY / (document.body.scrollHeight - window.innerHeight) * 100) + '%';
       document.getElementById('main-nav').classList.toggle('scrolled', window.scrollY > 60);
     }, { passive: true });
-
+ 
+    /* ── CAROUSEL ──────────────────────────────────────────────── */
     const expTrack = document.getElementById('expTrack');
     const slides = document.querySelectorAll('.exp-slide');
     const dotsContainer = document.getElementById('expDotsContainer');
     let activeExpIdx = 0;
-
+ 
     slides.forEach((_, idx) => {
       const dotBtn = document.createElement('button');
       dotBtn.className = 'exp-dot' + (idx === 0 ? ' active' : '');
       dotBtn.addEventListener('click', () => jumpToSlide(idx));
       dotsContainer.appendChild(dotBtn);
     });
-
+ 
     const dots = document.querySelectorAll('.exp-dot');
-    function updateExpSlider() { expTrack.style.transform = `translateX(-${activeExpIdx * 100}%)`; dots.forEach((d, idx) => d.classList.toggle('active', idx === activeExpIdx)); }
-    function shiftExp(direction) { activeExpIdx = (activeExpIdx + direction + slides.length) % slides.length; updateExpSlider(); }
+    function updateExpSlider() {
+      expTrack.style.transform = `translateX(-${activeExpIdx * 100}%)`;
+      dots.forEach((d, idx) => d.classList.toggle('active', idx === activeExpIdx));
+    }
+    function shiftExp(direction) {
+      activeExpIdx = (activeExpIdx + direction + slides.length) % slides.length;
+      updateExpSlider();
+    }
     function jumpToSlide(idx) { activeExpIdx = idx; updateExpSlider(); }
-
-    const overlay = document.getElementById('modal-overlay'), modalImg = document.getElementById('modal-img'), modalCap = document.getElementById('modal-caption');
-    function openModal(src, cap) { modalImg.src = src; modalCap.textContent = cap; overlay.classList.add('active'); document.body.style.overflow = 'hidden'; }
-    function closeModal() { overlay.classList.remove('active'); document.body.style.overflow = ''; setTimeout(() => { modalImg.src = ''; }, 300); }
+ 
+    /* ── LIGHTBOX ──────────────────────────────────────────────── */
+    const overlay = document.getElementById('modal-overlay');
+    const modalImg = document.getElementById('modal-img');
+    const modalCap = document.getElementById('modal-caption');
+    function openModal(src, cap) {
+      modalImg.src = src; modalCap.textContent = cap;
+      overlay.classList.add('active'); document.body.style.overflow = 'hidden';
+    }
+    function closeModal() {
+      overlay.classList.remove('active'); document.body.style.overflow = '';
+      setTimeout(() => { modalImg.src = ''; }, 300);
+    }
     overlay.addEventListener('click', e => { if (e.target === overlay) closeModal(); });
     document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
   </script>
 </body>
 </html>
-
-
